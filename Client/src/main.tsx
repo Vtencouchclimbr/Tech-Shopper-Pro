@@ -5,10 +5,13 @@ import './index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
-import Register from './pages/RegisterPage.tsx'
+import Register from './pages/Register.tsx'
 import Details from './pages/Details.tsx'
 import Checkout from './pages/Checkout.tsx'
 import Cart from './pages/Cart.tsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
 
 const router = createBrowserRouter([
   {
@@ -21,7 +24,7 @@ const router = createBrowserRouter([
         element: <Home />
       }, 
       {
-        path: '/RegisterPage',
+        path: '/Register',
         element: <Register />
       }, 
       {
