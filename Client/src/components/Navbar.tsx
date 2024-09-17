@@ -1,13 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 
-function NavTabs() {
+function Navbar() {
   const currentPage = useLocation().pathname;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark" style={{ backgroundColor: '#205375' }}>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ backgroundColor: 'black' }}>
       <div className="container-fluid">
-        <Link className="navbar-brand fs-3" to="/" style={{ fontFamily: 'Lucida Handwriting', color: 'antiquewhite', marginLeft: '20px' }}>
-          Jesse Anderson
+        <Link className="navbar-brand fs-3" to="/" style={{  }}>
+          Tech Shopper Pro
         </Link>
 
         <button
@@ -22,42 +22,51 @@ function NavTabs() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div style={{ marginRight: '20px' }} className="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav fs-4">
             <li className="nav-item">
               <Link
                 to="/"
                 className={`nav-link ${currentPage === '/' ? 'active' : ''}`}
-                style={{ color: '#f4f4f4' }}
+                style={{  }}
               >
-                About
+                Home
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/Portfolio"
-                className={`nav-link ${currentPage === '/Portfolio' ? 'active' : ''}`}
-                style={{ color: '#f4f4f4' }}
+                to="/Register"
+                className={`nav-link ${currentPage === '/Register' ? 'active' : ''}`}
+                style={{  }}
               >
-                Portfolio
+                Register
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/Resume"
-                className={`nav-link ${currentPage === '/Resume' ? 'active' : ''}`}
-                style={{ color: '#f4f4f4' }}
+                to="/Details"
+                className={`nav-link ${currentPage === '/Details' ? 'active' : ''}`}
+                style={{  }}
               >
-                Resume
+                Details
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/Contact"
-                className={`nav-link ${currentPage === '/Contact' ? 'active' : ''}`}
-                style={{ color: '#f4f4f4' }}
+                to="/Cart"
+                className={`nav-link ${currentPage === '/Cart' ? 'active' : ''}`}
+                style={{  }}
               >
-                Contact
+                Cart
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/Checkout"
+                className={`nav-link ${currentPage === '/Checkout' ? 'active' : ''}`}
+                style={{  }}
+              >
+                Checkout
               </Link>
             </li>
           </ul>
@@ -67,4 +76,4 @@ function NavTabs() {
   );
 }
 
-export default NavTabs;
+export default Navbar;
