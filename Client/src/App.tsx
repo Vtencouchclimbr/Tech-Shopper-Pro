@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import NavTabs from './components/NavTabs';
+import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -15,7 +15,7 @@ function App() {
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <NavTabs />
+        <Navbar />
         <main className="flex-grow-1 d-flex justify-content-center align-items-center">
           {/* The content will be centered */}
           <div className="container-fluid p-0">
