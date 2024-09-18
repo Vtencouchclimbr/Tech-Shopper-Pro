@@ -1,0 +1,19 @@
+/* Optional CSS to adjust the navbar for mobile */
+.navbar-brand {
+    font-size: 1.25rem; /* Slightly larger font size for brand on mobile */
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 1rem; /* Reduce font size slightly for better spacing on mobile */
+  }
+  
+  @media (min-width: 768px) {
+    .navbar-nav .nav-link {
+      font-size: 1.25rem; /* Increase font size on tablets and up */
+    }
+  
+    .navbar-brand {
+      font-size: 1.5rem; /* Larger brand size for larger screens */
+    }
+  }
+  

@@ -1,15 +1,24 @@
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../utils/logo.jpg';
+import '../utils/Navbar.css';
 
 function Navbar() {
   const currentPage = useLocation().pathname;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light" style={{ backgroundColor: 'black' }}>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
-        <Link className="navbar-brand fs-3" to="/" style={{  }}>
-          Tech Shopper Pro
+        {/* Brand and Logo */}
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img
+            src={logo}
+            alt="Logo"
+            style={{ marginRight: '10px', width: '40px', height: '40px' }}
+          />
+          <span>Tech Shopper Pro</span>
         </Link>
 
+        {/* Toggler for mobile */}
         <button
           className="navbar-toggler"
           type="button"
@@ -22,13 +31,13 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
+        {/* Collapsible menu */}
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
-          <ul className="navbar-nav fs-4">
+          <ul className="navbar-nav">
             <li className="nav-item">
               <Link
                 to="/"
                 className={`nav-link ${currentPage === '/' ? 'active' : ''}`}
-                style={{  }}
               >
                 Home
               </Link>
@@ -37,36 +46,16 @@ function Navbar() {
               <Link
                 to="/Register"
                 className={`nav-link ${currentPage === '/Register' ? 'active' : ''}`}
-                style={{  }}
               >
                 Register
               </Link>
             </li>
             <li className="nav-item">
               <Link
-                to="/Details"
-                className={`nav-link ${currentPage === '/Details' ? 'active' : ''}`}
-                style={{  }}
-              >
-                Details
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
                 to="/Cart"
                 className={`nav-link ${currentPage === '/Cart' ? 'active' : ''}`}
-                style={{  }}
               >
                 Cart
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/Checkout"
-                className={`nav-link ${currentPage === '/Checkout' ? 'active' : ''}`}
-                style={{  }}
-              >
-                Checkout
               </Link>
             </li>
           </ul>

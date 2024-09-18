@@ -39,7 +39,7 @@
 
 import React from 'react';
 
-const Footer: React.FC = () => {
+const MediaTab: React.FC = () => {
   
   // Scroll to top function
   const scrollToTop = () => {
@@ -63,4 +63,4 @@ const Footer: React.FC = () => {
   );
 }
 
-export default Footer;
+export default MediaTab;
