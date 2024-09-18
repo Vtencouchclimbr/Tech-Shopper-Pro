@@ -1,11 +1,20 @@
 import { Router } from 'express';
 import { Product } from '../../models/products.js'; // Import your Product model
+import dotenv from 'dotenv';
+dotenv.config();
+const API_BASE_URL = process.env.API_BASE_URL;
 const productRouter = Router();
 // GET all products
 productRouter.get('/', async (_req, res) => {
     try {
-        const products = await Product.findAll(); // Fetch all products
-        res.status(200).json(products);
+        const response = await fetch(`${API_BASE_URL}/products`, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = await response.json();
+        console.log(data);
+        res.status(200).json(data);
     }
     catch (error) {
         res.status(500).json({ message: 'Error fetching products', error });
