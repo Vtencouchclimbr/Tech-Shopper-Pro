@@ -1,4 +1,5 @@
 import React from 'react';
+import AddressAutoComplete from '../components/AddressAutoComplete';
 
 const Checkout: React.FC = () => {
 
