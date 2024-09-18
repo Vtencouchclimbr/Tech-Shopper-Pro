@@ -6,7 +6,7 @@ function Navbar() {
   const currentPage = useLocation().pathname;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav style={{ backgroundColor: '#163865'}} className="navbar navbar-expand-lg">
       <div className="container-fluid">
         {/* Brand and Logo */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
@@ -15,7 +15,7 @@ function Navbar() {
             alt="Logo"
             style={{ marginRight: '10px', width: '40px', height: '40px' }}
           />
-          <span>Tech Shopper Pro</span>
+          <span style={{ color: '#f8f5e6' }}>Tech Shopper Pro</span>
         </Link>
 
         {/* Toggler for mobile */}
@@ -27,6 +27,7 @@ function Navbar() {
           aria-controls="navbarNav"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          style={{ borderColor: '#f8f5e6' }}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -38,6 +39,7 @@ function Navbar() {
               <Link
                 to="/"
                 className={`nav-link ${currentPage === '/' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
               >
                 Home
               </Link>
@@ -46,6 +48,7 @@ function Navbar() {
               <Link
                 to="/Register"
                 className={`nav-link ${currentPage === '/Register' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
               >
                 Register
               </Link>
@@ -54,6 +57,7 @@ function Navbar() {
               <Link
                 to="/Cart"
                 className={`nav-link ${currentPage === '/Cart' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
               >
                 Cart
               </Link>

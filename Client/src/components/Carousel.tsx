@@ -1,4 +1,4 @@
-import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const items = [
   { id: 1, src: 'https://via.placeholder.com/150', alt: 'Item 1' },
@@ -17,23 +17,20 @@ const items = [
 
 const Carousel = () => {
   return (
-    <div id="multiItemCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+    <div id="multiItemCarousel" className="carousel slide" data-bs-interval="false">
       <div className="carousel-inner">
         {items.map((item, index) => {
-          if (index % 6 === 0) {
-            return (
-              <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
-                <div className="row">
-                  {items.slice(index, index + 6).map((item) => (
-                    <div className="col-md-2" key={item.id}>
-                      <img src={item.src} className="img-fluid" alt={item.alt} />
-                    </div>
-                  ))}
-                </div>
+          return (
+            <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
+              <div className="d-flex justify-content-center">
+                {items.slice(index, index + 6).map((item) => (
+                  <div className="col-4 col-md-2" key={item.id} style={{ minWidth: '150px' }}>
+                    <img src={item.src} className="img-fluid" alt={item.alt} />
+                  </div>
+                ))}
               </div>
-            );
-          }
-          return null;
+            </div>
+          );
         })}
       </div>
 

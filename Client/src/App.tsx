@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import MediaTab from './components/SocialMedia';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Navbar />
 
       {/* Main content area */}
-      <main className="flex-grow-1 d-flex justify-content-center align-items-center">
+      <main style={{ backgroundColor: '#f8f5e6'}} className="flex-grow-1 d-flex justify-content-center align-items-center">
         {/* Responsive container for the content */}
         <div className="container-fluid p-3">
           <Outlet />
@@ -17,7 +17,7 @@ function App() {
       </main>
 
       {/* MediaTab component */}
-      <MediaTab />
+      <Footer />
     </div>
   );
 }

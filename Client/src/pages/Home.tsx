@@ -5,11 +5,13 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
+      <h2>Where wings take dream</h2>
+      <div>
       <SearchBar />
+      </div>
+      <div>
       <Carousel />
-      <Carousel />
-      <Carousel />
+      </div>
     </>
   );
 };
