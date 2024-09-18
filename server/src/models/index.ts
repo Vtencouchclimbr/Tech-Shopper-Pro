@@ -1,11 +1,13 @@
 import sequelize from '../config/connection.js';
-import { FeedbackFactory } from './feedback.js';  // Import the Feedback model factory function
-import { TipFactory } from './tips.js';           // Import the Tip model factory function
+import { FeedbackFactory, applyAssociations } from './feedback.js';  // Import Feedback and associations
+import { CategoryFactory } from './category.js';  // Import Category model factory
 
-// Initialize the Tip model using the factory function and the Sequelize instance.
-const Tip = TipFactory(sequelize);
-// Initialize the Feedback model using the factory function and the Sequelize instance.
+// Initialize the models using the factory functions and the Sequelize instance.
+const Category = CategoryFactory(sequelize);
 const Feedback = FeedbackFactory(sequelize);
 
+// Apply the associations between Feedback and Category
+applyAssociations();
+
 // Export the Sequelize instance and the initialized models for use in other parts of the application.
-export { Feedback, Tip };
+export { Feedback, Category };
