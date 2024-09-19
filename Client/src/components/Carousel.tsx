@@ -1,20 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect } from 'react';
 import { Product } from '../interfaces/ShoppingData';
+import logo from '../utils/logo.jpg';
 
 const items = [
-  { id: 1, src: 'https://via.placeholder.com/150', alt: 'Item 1' },
-  { id: 2, src: 'https://via.placeholder.com/150', alt: 'Item 2' },
-  { id: 3, src: 'https://via.placeholder.com/150', alt: 'Item 3' },
-  { id: 4, src: 'https://via.placeholder.com/150', alt: 'Item 4' },
-  { id: 5, src: 'https://via.placeholder.com/150', alt: 'Item 5' },
-  { id: 6, src: 'https://via.placeholder.com/150', alt: 'Item 6' },
-  { id: 7, src: 'https://via.placeholder.com/150', alt: 'Item 7' },
-  { id: 8, src: 'https://via.placeholder.com/150', alt: 'Item 8' },
-  { id: 9, src: 'https://via.placeholder.com/150', alt: 'Item 9' },
-  { id: 10, src: 'https://via.placeholder.com/150', alt: 'Item 10' },
-  { id: 11, src: 'https://via.placeholder.com/150', alt: 'Item 11' },
-  { id: 12, src: 'https://via.placeholder.com/150', alt: 'Item 12' },
+  { id: 1, src: {logo}, alt: 'Item 1' },
+  { id: 2, src: {logo}, alt: 'Item 2' },
+  { id: 3, src: {logo}, alt: 'Item 3' },
+  { id: 4, src: {logo}, alt: 'Item 4' },
+  { id: 5, src: {logo}, alt: 'Item 5' },
+  { id: 6, src: {logo}, alt: 'Item 6' },
+  { id: 7, src: {logo}, alt: 'Item 7' },
+  { id: 8, src: {logo}, alt: 'Item 8' },
+  { id: 9, src: {logo}, alt: 'Item 9' },
+  { id: 10, src: {logo}, alt: 'Item 10' },
+  { id: 11, src: {logo}, alt: 'Item 11' },
+  { id: 12, src: {logo}, alt: 'Item 12' },
 ];
 
 const Carousel = () => {

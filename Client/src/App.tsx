@@ -11,7 +11,7 @@ function App() {
       {/* Main content area */}
       <main style={{ backgroundColor: '#f8f5e6' }} className="flex-grow-1 d-flex justify-content-center align-items-center">
         {/* Responsive container for the content */}
-        <div className="container-fluid p-2">
+        <div className="container-fluid p-1">
           <Outlet />
         </div>
       </main>
