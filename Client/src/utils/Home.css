@@ -1,10 +1,20 @@
-@media (min-width: 1200px) {
+@media (min-width: 780px) {
     .flair {
-      border: ;
+      display: flex;
       height: 800px;
     }
     h2 {
     font-family: Lucida Handwriting;
-    margin-bottom: 20px;
+    margin: 20px;
+    }
+  }
+@media (min-width: 1200px) {
+    .flair {
+      display: flex;
+      height: 800px;
+    }
+    h2 {
+    font-family: Lucida Handwriting;
+    margin: 20px;
     }
   }
