@@ -4,26 +4,21 @@ import Footer from './components/Footer';
 
 function App() {
   return (
-    <>
-      <div
-        className="d-flex flex-column min-vh-100"
-        style={{
-          backgroundImage: `url()`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <Navbar />
-        <main className="flex-grow-1 d-flex justify-content-center align-items-center">
-          {/* The content will be centered */}
-          <div className="container-fluid p-0">
-            <Outlet />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </>
+    <div className="d-flex flex-column min-vh-100">
+      {/* Navbar stays at the top on all screen sizes */}
+      <Navbar />
+
+      {/* Main content area */}
+      <main style={{ backgroundColor: '#f8f5e6' }} className="flex-grow-1 d-flex justify-content-center align-items-center">
+        {/* Responsive container for the content */}
+        <div className="container-fluid p-2">
+          <Outlet />
+        </div>
+      </main>
+
+      {/* MediaTab component */}
+      <Footer />
+    </div>
   );
 }
 
