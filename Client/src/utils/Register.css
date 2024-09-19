@@ -1,0 +1,38 @@
+@media (min-width: 780px) {
+    .formContainer {
+        display: flex;
+        height: 600px;
+        justify-content: end;
+    }
+    form {
+        height: 200px;
+        width: 350px;
+    }
+    .offerText {
+        font-family: Lucida Handwriting;
+        margin-bottom: 20px;
+    }
+    .hiddenContainer {
+        font-family: ;
+        
+    }
+  }
+@media (min-width: 1200px) {
+    .formContainer {
+        display: flex;
+        height: 600px;
+        justify-content: end;
+    }
+    form {
+        height: 200px;
+        width: 350px;
+    }
+    .offerText {
+        font-family: Lucida Handwriting;
+        margin-bottom: 20px;
+    }
+    .hiddenContainer {
+        font-family: ;
+        
+    }
+  }

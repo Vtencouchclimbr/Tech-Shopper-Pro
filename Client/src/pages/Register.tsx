@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../utils/Register.css';
 
 function Register() {
   const [formInfo, setformInfo] = useState({
@@ -38,17 +39,15 @@ function Register() {
   };
 
   return (
-    <div className="container-fluid">
-
-      {/* Text animation */}
-      <div className="dynamic-text">
-        {/* <TextAnimation /> */}
+    <div>
+        <div className='hiddenContainer d-none d-lg-block d-md-block ms-5'>
+        <p style={{ fontSize: '50px' }}>Welcome to Tech Shopper Pro!</p>
       </div>
-
-      {/* Form section */}
-      <form className="row g-3 justify-content-center form-text" onSubmit={emailValidate}>
+    <div className="d-flex container-fluid formContainer">
+      <form className="row g-3" onSubmit={emailValidate}>
+      <p className='offerText'>Sign-up and recieve special offers <br></br>on shipping and purchases</p>
         {/* First Name */}
-        <div className="col-md-4 col-lg-3">
+        <div className="col-12 col-md-6">
           <input
             value={formInfo.firstName}
             name="firstName"
@@ -60,7 +59,7 @@ function Register() {
         </div>
 
         {/* Last Name */}
-        <div className="col-md-4 col-lg-3">
+        <div className="col-12 col-md-6">
           <input
             value={formInfo.lastName}
             name="lastName"
@@ -72,7 +71,7 @@ function Register() {
         </div>
 
         {/* Email */}
-        <div className="col-md-8 col-lg-6">
+        <div className="col-12">
           <input
             value={formInfo.email}
             name="email"
@@ -82,16 +81,17 @@ function Register() {
             placeholder="Youremail@address.com"
           />
         </div>
+
         {/* Submit Button */}
-        <div className="col-md-12 text-center">
-          <button className="btn btn-outline-light shadow" type="submit">
+        <div className="col-12 text-center">
+          <button className="btn btn-primary shadow" type="submit">
             Submit
           </button>
         </div>
       </form>
     </div>
+    </div>
   );
 }
 
 export default Register;
-
