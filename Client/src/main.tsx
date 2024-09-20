@@ -6,6 +6,7 @@ import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
 import Register from './pages/Register.tsx'
+import Login from './pages/Login.tsx'
 import Details from './pages/Details.tsx'
 import Checkout from './pages/Checkout.tsx'
 import Cart from './pages/Cart.tsx'
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: '/Register',
         element: <Register />
+      }, 
+      {
+        path: '/Login',
+        element: <Login />
       }, 
       {
         path: '/Details',

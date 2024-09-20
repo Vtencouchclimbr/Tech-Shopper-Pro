@@ -7,26 +7,25 @@ const Carousel = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch products when the component mounts
+  // Fetch products immediately when the component mounts
   useEffect(() => {
-    fetch('/api/products')
-      .then((response) => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Fetched Products:', data);
-        setProducts(data); // Store fetched products
-        setLoading(false); // Turn off loading state
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
         setError(error.message);
-        setLoading(false); // Turn off loading state even in case of error
-      });
-  }, []);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []); // Empty dependency array ensures this runs only once
 
   // Return loading spinner while fetching data
   if (loading) {
@@ -55,10 +54,8 @@ const Carousel = () => {
         {groupedProducts.map((group, index) => (
           <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
             <div className="d-flex justify-content-center">
-              {/* Render each group of products */}
               {group.map((product) => (
                 <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
-                  {/* Make the image clickable */}
                   <a href={`/product/${product.id}`} target="_blank" rel="noopener noreferrer">
                     <img
                       src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
@@ -66,7 +63,6 @@ const Carousel = () => {
                       alt={product.title || 'Product Image'}
                     />
                   </a>
-                  {/* Product title or description */}
                   <p className="mt-2">{product.title || 'No description available'}</p>
                 </div>
               ))}

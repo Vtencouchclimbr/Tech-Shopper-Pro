@@ -1,4 +1,4 @@
-import ProductDetails from '../components/ProductDetails';
+import ProductDetail from '../components/ProductDetails';
 import SearchBar from '../components/SearchBar';
 import '../utils/Details.css';
 
@@ -12,7 +12,7 @@ const Details = () => {
 
       {/* Product Details */}
       <div className="flex-grow-2">
-        <ProductDetails />
+        <ProductDetail />
       </div>
       <button style={{ height: '40px' }} className="btn btn-success" type="submit">
         Add to Cart

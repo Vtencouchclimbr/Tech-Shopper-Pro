@@ -27,6 +27,7 @@ productRouter.get('/:id', async (req, res) => {
         const product = await Product.findByPk(req.params.id); // Find product by ID
         if (product) {
             res.status(200).json(product);
+            console.log(product);
         }
         else {
             res.status(404).json({ message: 'Product not found' });
