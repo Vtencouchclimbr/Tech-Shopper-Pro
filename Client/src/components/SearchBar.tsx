@@ -18,9 +18,9 @@ const SearchBar = ({ onSearch }) => {
         aria-label="Search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}  // Update state with input value
-        style={{ flex: '1', height: '30px' }}
+        style={{ flex: '1', height: '40px' }}
       />
-      <button style={{ height: '50px' }} className="btn btn-outline-success" type="submit">
+      <button style={{ height: '40px' }} className="btn btn-outline-success" type="submit">
         Search
       </button>
     </form>

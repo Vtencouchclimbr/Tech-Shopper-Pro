@@ -7,6 +7,9 @@
     font-family: Lucida Handwriting;
     margin: 20px;
     }
+    .carousel {
+    margin-left: 30px;
+    }
   }
 @media (min-width: 1200px) {
     .flair {
@@ -17,4 +20,7 @@
     font-family: Lucida Handwriting;
     margin: 20px;
     }
+    .carousel {
+      margin-left: 100px;
+      }
   }

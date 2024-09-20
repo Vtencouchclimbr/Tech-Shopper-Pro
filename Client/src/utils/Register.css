@@ -3,6 +3,7 @@
         display: flex;
         height: 600px;
         justify-content: end;
+        padding-right: 50px;
     }
     form {
         height: 200px;
@@ -11,10 +12,6 @@
     .offerText {
         font-family: Lucida Handwriting;
         margin-bottom: 20px;
-    }
-    .hiddenContainer {
-        font-family: ;
-        
     }
   }
 @media (min-width: 1200px) {
@@ -30,9 +27,5 @@
     .offerText {
         font-family: Lucida Handwriting;
         margin-bottom: 20px;
-    }
-    .hiddenContainer {
-        font-family: ;
-        
     }
   }
