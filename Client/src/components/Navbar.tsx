@@ -1,12 +1,17 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../utils/logo.jpg';
 import '../utils/Navbar.css';
 
-function Navbar() {
+interface NavbarProps {
+  toggleWishlist: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ toggleWishlist }) => {
   const currentPage = useLocation().pathname;
 
   return (
-    <nav style={{ backgroundColor: '#163865'}} className="navbar navbar-expand-lg">
+    <nav style={{ backgroundColor: '#163865' }} className="navbar navbar-expand-lg">
       <div className="container-fluid">
         {/* Brand and Logo */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
@@ -39,34 +44,21 @@ function Navbar() {
               <Link
                 to="/"
                 className={`nav-link ${currentPage === '/' ? 'active' : ''}`}
-                style={{ color: '#f8f5e6' }}
               >
                 Home
               </Link>
             </li>
+            {/* Add more nav items here */}
             <li className="nav-item">
-              <Link
-                to="/Register"
-                className={`nav-link ${currentPage === '/Register' ? 'active' : ''}`}
-                style={{ color: '#f8f5e6' }}
-              >
-                Register
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/Cart"
-                className={`nav-link ${currentPage === '/Cart' ? 'active' : ''}`}
-                style={{ color: '#f8f5e6' }}
-              >
-                Cart
-              </Link>
+              <button className="nav-link btn" onClick={toggleWishlist} style={{ color: '#f8f5e6' }}>
+                Wishlist
+              </button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
