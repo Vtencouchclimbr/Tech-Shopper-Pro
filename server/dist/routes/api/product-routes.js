@@ -15,6 +15,7 @@ productRouter.get('/', async (_req, res) => {
         const data = await response.json();
         console.log(data);
         res.status(200).json(data);
+        // res.status(200).json(response);
     }
     catch (error) {
         res.status(500).json({ message: 'Error fetching products', error });

@@ -10,7 +10,7 @@ const Home = () => {
       <div className="flex-grow-2 pt-3 searchBar">
       <SearchBar />
       </div>
-      <div className="flex-grow-3 pt-5">
+      <div className="flex-grow-3 pt-5 carousel">
       <Carousel />
       </div>
     </div>
