@@ -55,7 +55,6 @@ function Login() {
           <p className="offerText">
             Sign-in
           </p>
-          <a href="/register" className="btn btn-link">Don't have an account? Register here</a>
 
           {/* User Name */}
           <div className="col-12 col-md-6">
@@ -87,6 +86,7 @@ function Login() {
               Submit
             </button>
           </div>
+          <a href="/register" className="btn btn-link">Don't have an account? Register here</a>
         </form>
       </div>
     </div>

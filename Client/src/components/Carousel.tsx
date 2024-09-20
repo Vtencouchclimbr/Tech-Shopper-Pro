@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../utils/Carousel.css';
 import { useState, useEffect } from 'react';
 import { Product } from '../interfaces/ShoppingData'; // Assuming this contains the Product interface
 
@@ -44,12 +45,24 @@ const Carousel = () => {
 
   // Split products into groups of 6
   const groupedProducts = [];
-  for (let i = 0; i < products.length; i += 6) {
-    groupedProducts.push(products.slice(i, i + 6));
+  for (let i = 0; i < products.length; i += 5) {
+    groupedProducts.push(products.slice(i, i + 5));
   }
 
   return (
     <div id="multiItemCarousel" className="carousel slide" data-bs-interval="false">
+      {/* Carousel controls - Positioned above the carousel */}
+      <div className="d-flex justify-content-between mb-3">
+        <button className="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+
       <div className="carousel-inner">
         {groupedProducts.map((group, index) => (
           <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
@@ -59,7 +72,7 @@ const Carousel = () => {
                   <a href={`/product/${product.id}`} target="_blank" rel="noopener noreferrer">
                     <img
                       src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
-                      className="img-fluid"
+                      className="img-fluid col-10 col-md-10"
                       alt={product.title || 'Product Image'}
                     />
                   </a>
@@ -70,16 +83,6 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-
-      {/* Carousel controls */}
-      <button className="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
-      <button className="carousel-control-next" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
     </div>
   );
 };
