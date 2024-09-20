@@ -40,15 +40,40 @@ const Navbar: React.FC<NavbarProps> = ({ toggleWishlist }) => {
         {/* Collapsible menu */}
         <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
           <ul className="navbar-nav">
+            {/* Home Tab */}
             <li className="nav-item">
               <Link
                 to="/"
                 className={`nav-link ${currentPage === '/' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
               >
                 Home
               </Link>
             </li>
-            {/* Add more nav items here */}
+
+            {/* Register Tab */}
+            <li className="nav-item">
+              <Link
+                to="/register"
+                className={`nav-link ${currentPage === '/register' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
+              >
+                Register
+              </Link>
+            </li>
+
+            {/* Cart Tab */}
+            <li className="nav-item">
+              <Link
+                to="/cart"
+                className={`nav-link ${currentPage === '/cart' ? 'active' : ''}`}
+                style={{ color: '#f8f5e6' }}
+              >
+                Cart
+              </Link>
+            </li>
+
+            {/* Wishlist Button */}
             <li className="nav-item">
               <button className="nav-link btn" onClick={toggleWishlist} style={{ color: '#f8f5e6' }}>
                 Wishlist
