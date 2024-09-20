@@ -10,6 +10,7 @@ import Details from './pages/Details.tsx'
 import Checkout from './pages/Checkout.tsx'
 import Cart from './pages/Cart.tsx'
 import { CartProvider } from './components/CartState.tsx';
+import { WishlistProvider } from './components/wishlistSate.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -18,8 +19,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <CartProvider>  {/* Wraps App with CartProvider */}
+      <CartProvider> 
+      <WishlistProvider>  {/* Wraps App with WishlistProvider */}
         <App />
+      </WishlistProvider>
       </CartProvider>
     ),
     errorElement: <ErrorPage />,
