@@ -40,14 +40,4 @@ productRouter.get('/:id', async (req, res) => {
     }
 });
 
-// POST create new product
-productRouter.post('/', async (req, res) => {
-    try {
-        const newProduct = await Product.create(req.body);  // Create new product
-        res.status(201).json(newProduct);
-    } catch (error) {
-        res.status(500).json({ message: 'Error creating product', error });
-    }
-});
-
 export { productRouter };

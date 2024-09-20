@@ -34,13 +34,19 @@ export function UserFactory(sequelize) {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        role: {
+            type: DataTypes.STRING,
+            defaultValue: 'user', // Default role is 'user'
+        },
     }, {
         tableName: 'users', // Name of the table in PostgreSQL
         sequelize, // The Sequelize instance that connects to PostgreSQL
         hooks: {
             // Before creating a new user, hash and set the password
             beforeCreate: async (user) => {
-                await user.setPassword(user.password);
+                if (user.password) {
+                    await user.setPassword(user.password);
+                }
             },
             // Before updating a user, hash and set the new password if it has changed
             beforeUpdate: async (user) => {

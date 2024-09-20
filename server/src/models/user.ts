@@ -7,6 +7,7 @@ interface UserAttributes {
   username: string;
   email: string;
   password: string;
+  role?: string; // Optional role field for authorization
 }
 
 // Define the optional attributes for creating a new User
@@ -18,6 +19,7 @@ export class User extends Model<UserAttributes, UserCreationAttributes> implemen
   public username!: string;
   public email!: string;
   public password!: string;
+  public role!: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -57,6 +59,10 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      role: {
+        type: DataTypes.STRING,
+        defaultValue: 'user', // Default role is 'user'
+      },
     },
     {
       tableName: 'users',  // Name of the table in PostgreSQL
@@ -64,7 +70,9 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       hooks: {
         // Before creating a new user, hash and set the password
         beforeCreate: async (user: User) => {
-          await user.setPassword(user.password);
+          if (user.password) {
+            await user.setPassword(user.password);
+          }
         },
         // Before updating a user, hash and set the new password if it has changed
         beforeUpdate: async (user: User) => {
