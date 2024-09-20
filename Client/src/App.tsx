@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { useWishlist } from './components/wishlistSate';
+import React, { useState } from 'react';
+import './utils/offCanvas.css';
 
 const App: React.FC= () => {
   const { state: wishlistState } = useWishlist();
@@ -29,7 +30,7 @@ const App: React.FC= () => {
       <Footer />
 
       {/* Off-Canvas Wishlist */}
-      <div className={`off-canvas ${showWishlist ? 'show' : ''}`}>  {/* Off-canvas visibility */}
+      <div className={`off-canvas ${showWishlist ? 'show' : ''}`}>  {/* slides in from the right */}
         <div className="off-canvas-header">
           <h2>Your Wishlist</h2>
           <button onClick={toggleWishlist}>Close</button>

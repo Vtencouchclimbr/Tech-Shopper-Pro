@@ -1,0 +1,30 @@
+/* src/components/OffCanvas.css */
+
+.off-canvas {
+    position: fixed;
+    top: 0;
+    right: -100%;  /* Completely off-screen by default */
+    width: 100%;  /* Covers full width or adjust as needed (e.g., 30% for partial) */
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease;
+    z-index: 1000;  /* Make sure it appears on top */
+    padding: 1rem;
+    overflow-y: auto;  /* Add scroll if the content overflows */
+  }
+  
+  .off-canvas.show {
+    right: 0;  /* Slide the canvas into view */
+  }
+  
+  .off-canvas-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .off-canvas-body {
+    margin-top: 1rem;
+  }
+  
