@@ -1,6 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../utils/Carousel.css';
 import { useState, useEffect } from 'react';
-import { Product } from '../interfaces/ShoppingData'; // Assuming this contains the Product interface
+import { Product } from '../interfaces/ShoppingData';  // Assuming this contains the Product interface
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom for navigation
 
 const Carousel = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -9,64 +11,70 @@ const Carousel = () => {
 
   // Fetch products when the component mounts
   useEffect(() => {
-    fetch('/api/products')
-      .then((response) => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products');
         if (!response.ok) {
           throw new Error('Failed to fetch products');
         }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Fetched Products:', data);
-        setProducts(data); // Store fetched products
-        setLoading(false); // Turn off loading state
-      })
-      .catch((error) => {
-        console.error('Error fetching products:', error);
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (error) {
         setError(error.message);
-        setLoading(false); // Turn off loading state even in case of error
-      });
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
   }, []);
 
-  // Return loading spinner while fetching data
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Return error message if there's an issue
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Handle case where no products are available
   if (products.length === 0) {
     return <div>No products available.</div>;
   }
 
-  // Split products into groups of 6
+  // Split products into groups of 5
   const groupedProducts = [];
-  for (let i = 0; i < products.length; i += 6) {
-    groupedProducts.push(products.slice(i, i + 6));
+  for (let i = 0; i < products.length; i += 5) {
+    groupedProducts.push(products.slice(i, i + 5));
   }
 
   return (
     <div id="multiItemCarousel" className="carousel slide" data-bs-interval="false">
+      {/* Carousel controls positioned above the carousel */}
+      <div className="d-flex justify-content-between mb-3">
+        <button className="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+
       <div className="carousel-inner">
         {groupedProducts.map((group, index) => (
           <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
             <div className="d-flex justify-content-center">
-              {/* Render each group of products */}
               {group.map((product) => (
                 <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
-                  {/* Make the image clickable */}
-                  <a href={`/product/${product.id}`} target="_blank" rel="noopener noreferrer">
+                  {/* Use Link to navigate to the product details page */}
+                  <Link to={`/details`}>
                     <img
                       src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
-                      className="img-fluid"
+                      className="img-fluid col-10 col-md-10"
                       alt={product.title || 'Product Image'}
                     />
-                  </a>
-                  {/* Product title or description */}
+                  </Link>
                   <p className="mt-2">{product.title || 'No description available'}</p>
                 </div>
               ))}
@@ -74,16 +82,6 @@ const Carousel = () => {
           </div>
         ))}
       </div>
-
-      {/* Carousel controls */}
-      <button className="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
-        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Previous</span>
-      </button>
-      <button className="carousel-control-next" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="next">
-        <span className="carousel-control-next-icon" aria-hidden="true"></span>
-        <span className="visually-hidden">Next</span>
-      </button>
     </div>
   );
 };

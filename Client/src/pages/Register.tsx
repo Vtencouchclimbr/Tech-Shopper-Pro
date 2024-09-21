@@ -3,19 +3,18 @@ import '../utils/Register.css';
 
 function Register() {
   const [formInfo, setformInfo] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: ""
+    username: '',
+    email: '',
+    password: '',
   });
 
-  const handleInput = e => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setformInfo({ ...formInfo, [e.target.name]: e.target.value });
   };
 
-  const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const emailValidate = (e) => {
+  const emailValidate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { email } = formInfo;
     if (!email.trim()) {
@@ -23,73 +22,103 @@ function Register() {
     } else if (!validateEmail(email)) {
       alert('Please enter a valid email address.');
     } else {
-      handleFormSubmit(e);
+      await handleFormSubmit(e);
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setformInfo({
-      firstName: "",
-      lastName: "",
-      email: "",
-      message: ""
-    });
-    alert('Form submitted successfully!');
+    try {
+      const response = await fetch('/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formInfo), // Sending form data to backend
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to register user');
+      }
+
+      const data = await response.json();
+      console.log('Registration successful:', data);
+
+      // Reset form fields
+      setformInfo({
+        username: '',
+        email: '',
+        password: '', // Reset the password field too
+      });
+      alert('Form submitted successfully!');
+    } catch (error) {
+      console.error('Registration failed:', error);
+      alert('Registration failed');
+    }
   };
 
   return (
     <div>
-        <div className='hiddenContainer d-none d-lg-block d-md-block ms-5'>
+      <div className="hiddenContainer d-none d-lg-block d-md-block ms-5">
         <p style={{ fontSize: '50px' }}>Welcome to Tech Shopper Pro!</p>
       </div>
-    <div className="d-flex container-fluid formContainer">
-      <form className="row g-3" onSubmit={emailValidate}>
-      <p className='offerText'>Sign-up and recieve special offers <br></br>on shipping and purchases</p>
-        {/* First Name */}
-        <div className="col-12 col-md-6">
-          <input
-            value={formInfo.firstName}
-            name="firstName"
-            onChange={handleInput}
-            className="form-control shadow"
-            type="text"
-            placeholder="First Name"
-          />
-        </div>
+      <div className="d-flex container-fluid formContainer">
+        <form className="row g-3" onSubmit={emailValidate}>
+          <p className="offerText">
+            Sign-up to receive special offers <br />
+            on shipping and purchases
+          </p>
 
-        {/* Last Name */}
-        <div className="col-12 col-md-6">
-          <input
-            value={formInfo.lastName}
-            name="lastName"
-            onChange={handleInput}
-            className="form-control shadow"
-            type="text"
-            placeholder="Last Name"
-          />
-        </div>
+          {/* User Name */}
+          <div className="col-12 col-md-6">
+            <input
+              value={formInfo.username}
+              name="username"
+              onChange={handleInput}
+              className="form-control shadow"
+              type="text"
+              placeholder="User Name"
+              required
+            />
+          </div>
 
-        {/* Email */}
-        <div className="col-12">
-          <input
-            value={formInfo.email}
-            name="email"
-            onChange={handleInput}
-            className="form-control shadow"
-            type="email"
-            placeholder="Youremail@address.com"
-          />
-        </div>
+          {/* Email */}
+          <div className="col-12">
+            <input
+              value={formInfo.email}
+              name="email"
+              onChange={handleInput}
+              className="form-control shadow"
+              type="email"
+              placeholder="Youremail@address.com"
+              required
+            />
+          </div>
 
-        {/* Submit Button */}
-        <div className="col-12 text-center">
-          <button className="btn btn-primary shadow" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+          {/* Password */}
+          <div className="col-12">
+            <input
+              value={formInfo.password}
+              name="password"
+              onChange={handleInput}
+              className="form-control shadow"
+              type="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="col-12 text-center">
+            <button className="btn btn-primary shadow" type="submit">
+              Submit
+            </button>
+          </div>
+          <a href="/login" className="btn btn-link">
+            Already have an account? Login here!
+          </a>
+        </form>
+      </div>
     </div>
   );
 }

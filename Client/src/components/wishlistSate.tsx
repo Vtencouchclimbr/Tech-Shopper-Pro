@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import '../utils/offCanvas.css';
 
 interface WishlistItem {
     id: number;

@@ -1,16 +1,15 @@
-@media (min-width: 780px) {
+@media (min-width: 780px) and (max-width: 1199px) {
     .formContainer {
         display: flex;
         height: 600px;
-        justify-content: end;
-        padding-right: 50px;
+        justify-content: center;
+        margin-top: 100px;
     }
     form {
         height: 200px;
         width: 350px;
     }
     .offerText {
-        font-family: Lucida Handwriting;
         margin-bottom: 20px;
     }
   }
@@ -18,14 +17,15 @@
     .formContainer {
         display: flex;
         height: 600px;
-        justify-content: end;
+        justify-content: center;
+        margin-top: 100px;
     }
     form {
         height: 200px;
         width: 350px;
     }
     .offerText {
-        font-family: Lucida Handwriting;
         margin-bottom: 20px;
+        padding-right: 100px;
     }
   }

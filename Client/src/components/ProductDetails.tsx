@@ -1,31 +1,58 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { Product } from '../interfaces/ShoppingData';
+import { product.id } from './Carousel';
 
+const ProductDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-const ProductDetails = () => {
+  useEffect(() => {
+    
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`/api/products/${id}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch product details');
+        }
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!product) {
+    return <div>Product not found.</div>;
+  }
 
   return (
-    <div className="container-fluid p-3">
-      <div className="row">
-        {/* Title */}
-        <div style={{ border: 'solid' }} className="col-12 text-center mb-3 flex-grow-1">
-          <h1 className="title">Title</h1>
-        </div>
-
-        {/* Single Item */}
-        <div className="col-12 col-md-6">
-          <div className="item-details">
-            <p className="text-center">SINGLE ITEM</p>
-          </div>
-        </div>
-
-        {/* Product Details */}
-        <div className="col-12 col-md-6">
-          <div className="product-details">
-            <p className="text-center">Product Details</p>
-          </div>
-        </div>
-      </div>
+    <div>
+      <h1>{product.title}</h1>
+      <img
+        src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
+        alt={product.title || 'Product Image'}
+        style={{ width: '300px', height: '300px' }}
+      />
+      <p>{product.description || 'No description available.'}</p>
+      <p>Price: ${product.price}</p>
     </div>
   );
 };
 
-export default ProductDetails;
+export default ProductDetail;
