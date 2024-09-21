@@ -67,7 +67,8 @@ const ProductDetail = () => {
           <img
             src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
             alt={product.title || 'Product Image'}
-            className="img-fluid rounded shadow-sm"
+            className="img-fluid rounded shadow-md"
+            
           />
         </div>
         
@@ -78,7 +79,7 @@ const ProductDetail = () => {
           <p className="h5 text-primary">Price: ${product.price}</p>
 
           {/* Add to Cart Button */}
-          <button className="btn btn-primary mt-3" onClick={handleAddToCart}>
+          <button className="btn btn-primary mt-3 shadow-md" onClick={handleAddToCart}>
             Add to Cart
           </button>
         </div>

@@ -1,6 +1,6 @@
 import ProductDetail from '../components/ProductDetails';
 import SearchBar from '../components/SearchBar';
-import '../utils/Details.css';
+
 
 const Details = () => {
   return (
