@@ -114,7 +114,7 @@ function Register() {
               Submit
             </button>
           </div>
-          <a href="/login" className="btn btn-link">
+          <a href="/" className="btn btn-link">
             Already have an account? Login here!
           </a>
         </form>
