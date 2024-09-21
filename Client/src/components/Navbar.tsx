@@ -58,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleWishlist }) => {
                 className={`nav-link ${currentPage === '/login' ? 'active' : ''}`}
                 style={{ color: '#f8f5e6' }}
               >
-                shop
+                Shop
               </Link>
             </li>
 
