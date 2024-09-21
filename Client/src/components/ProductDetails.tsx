@@ -51,6 +51,7 @@ const ProductDetail = () => {
     // Save the updated cart back into localStorage
     localStorage.setItem('toCart', JSON.stringify(updatedCart));
 
+
     // Optionally alert the user that the item has been added to the cart
     alert(`${product.title} has been added to your cart.`);
   };
