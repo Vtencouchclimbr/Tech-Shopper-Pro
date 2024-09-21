@@ -67,8 +67,13 @@ const Carousel = () => {
             <div className="d-flex justify-content-center">
               {group.map((product) => (
                 <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
-                  {/* Use Link to navigate to the product details page */}
-                  <Link to={`/details`}>
+                  {/* Pass the product id through the state property of Link */}
+                  <Link
+                    to={{
+                      pathname: '/details',
+                    }}
+                    state={{ id: product.id }}  // Passing product.id through state
+                  >
                     <img
                       src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
                       className="img-fluid col-10 col-md-10"
