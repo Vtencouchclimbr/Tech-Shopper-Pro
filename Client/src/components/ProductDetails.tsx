@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Product } from '../interfaces/ShoppingData';
-import { product.id } from './Carousel';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
