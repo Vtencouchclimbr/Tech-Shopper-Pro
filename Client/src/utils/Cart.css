@@ -1,0 +1,12 @@
+@media (min-width: 780px) {
+    .flair {
+      display: flex;
+      height: 800px;
+    }
+  }
+@media (min-width: 1200px) {
+    .flair {
+      display: flex;
+      height: 800px;
+    }
+  }

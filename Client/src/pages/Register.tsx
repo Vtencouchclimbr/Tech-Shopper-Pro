@@ -2,39 +2,69 @@ import { useState } from 'react';
 import '../utils/Register.css';
 
 function Register() {
-  const [formInfo, setformInfo] = useState({
+  const [formInfo, setFormInfo] = useState({
     username: '',
     email: '',
     password: '',
   });
 
+  const [errors, setErrors] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const { username, email, password } = formInfo;
+
+  // Handle input changes
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setformInfo({ ...formInfo, [e.target.name]: e.target.value });
+    setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
+    setErrors({ ...errors, [e.target.name]: '' });  // Clear the error when user types
   };
 
+  // Email validation logic
   const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const emailValidate = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { email } = formInfo;
-    if (!email.trim()) {
-      alert('Please enter your email before submitting.');
-    } else if (!validateEmail(email)) {
-      alert('Please enter a valid email address.');
-    } else {
-      await handleFormSubmit(e);
+  // Form validation
+  const validateForm = () => {
+    let isValid = true;
+    const newErrors = { username: '', email: '', password: '' };
+
+    if (!username.trim()) {
+      newErrors.username = 'Username is required';
+      isValid = false;
     }
+
+    if (!email.trim()) {
+      newErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!validateEmail(email)) {
+      newErrors.email = 'Enter a valid email address';
+      isValid = false;
+    }
+
+    if (!password.trim()) {
+      newErrors.password = 'Password is required';
+      isValid = false;
+    }
+
+    setErrors(newErrors);
+    return isValid;
   };
 
+  // Form submission
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validateForm()) return;  // Prevent submission if form is invalid
+
     try {
       const response = await fetch('/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formInfo), // Sending form data to backend
+        body: JSON.stringify(formInfo),
       });
 
       if (!response.ok) {
@@ -44,13 +74,15 @@ function Register() {
       const data = await response.json();
       console.log('Registration successful:', data);
 
-      // Reset form fields
-      setformInfo({
+      // Reset form fields on successful submission
+      setFormInfo({
         username: '',
         email: '',
-        password: '', // Reset the password field too
+        password: '',
       });
-      alert('Form submitted successfully!');
+
+      alert('Registration successful!');
+
     } catch (error) {
       console.error('Registration failed:', error);
       alert('Registration failed');
@@ -63,7 +95,7 @@ function Register() {
         <p style={{ fontSize: '50px' }}>Welcome to Tech Shopper Pro!</p>
       </div>
       <div className="d-flex container-fluid formContainer">
-        <form className="row g-3" onSubmit={emailValidate}>
+        <form className="row g-3" onSubmit={handleFormSubmit}>
           <p className="offerText">
             Sign-up to receive special offers <br />
             on shipping and purchases
@@ -72,40 +104,46 @@ function Register() {
           {/* User Name */}
           <div className="col-12 col-md-6">
             <input
-              value={formInfo.username}
+              value={username}
               name="username"
               onChange={handleInput}
-              className="form-control shadow"
+              className={`form-control shadow ${errors.username ? 'is-invalid' : ''}`}
               type="text"
               placeholder="User Name"
               required
+              aria-describedby="usernameError"
             />
+            {errors.username && <div className="invalid-feedback" id="usernameError">{errors.username}</div>}
           </div>
 
           {/* Email */}
           <div className="col-12">
             <input
-              value={formInfo.email}
+              value={email}
               name="email"
               onChange={handleInput}
-              className="form-control shadow"
+              className={`form-control shadow ${errors.email ? 'is-invalid' : ''}`}
               type="email"
               placeholder="Youremail@address.com"
               required
+              aria-describedby="emailError"
             />
+            {errors.email && <div className="invalid-feedback" id="emailError">{errors.email}</div>}
           </div>
 
           {/* Password */}
           <div className="col-12">
             <input
-              value={formInfo.password}
+              value={password}
               name="password"
               onChange={handleInput}
-              className="form-control shadow"
+              className={`form-control shadow ${errors.password ? 'is-invalid' : ''}`}
               type="password"
               placeholder="Password"
               required
+              aria-describedby="passwordError"
             />
+            {errors.password && <div className="invalid-feedback" id="passwordError">{errors.password}</div>}
           </div>
 
           {/* Submit Button */}

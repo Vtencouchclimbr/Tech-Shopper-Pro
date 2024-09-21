@@ -48,22 +48,22 @@ interface CartItem {
           <p>Your cart is empty</p>
         ) : (
             <ul>
-  {cartItems.map((item) => (
-    <li key={item.id}>
-      {/* Display the product image */}
-      <img src={item.image} alt={item.name} style={{ width: '100px', marginRight: '10px' }} />
-
-      {/* Display the product name and price */}
-      <span>{item.name} - Price: ${item.price}</span>
-
-      {/* Move to Wishlist Button */}
-      <button onClick={() => handleMoveToWishlist(item)}>Move to Wishlist</button>
-
-      {/* Remove Button */}
-      <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
-    </li>
-  ))}
-</ul>
+              {cartItems.map((item) => (
+                <li key={item.id}>
+                  {/* Display the product image */}
+                  <img src={item.image} alt={item.name} style={{ width: '100px', marginRight: '10px' }} />
+              
+                  {/* Display the product name and price */}
+                  <span>{item.name} - Price: ${item.price}</span>
+              
+                  {/* Move to Wishlist Button */}
+                  <button onClick={() => handleMoveToWishlist(item)}>Move to Wishlist</button>
+              
+                  {/* Remove Button */}
+                  <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+                </li>
+              ))}
+            </ul>
         )}
       </div>
     );

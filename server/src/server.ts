@@ -3,7 +3,6 @@ const forceDatabaseRefresh = false;  // Flag to control whether to force a datab
 import express from 'express';
 import sequelize from './config/connection.js'; // Import the initialized Sequelize instance
 import routes from './routes/index.js';  // Import the routes for handling different endpoints
-import authMiddleware from './middleware/auth.js';  // Import the authentication middleware
 
 const app = express();  // Create an Express application
 const PORT = process.env.PORT || 3001;  // Define the port for the server to listen on
@@ -13,8 +12,6 @@ app.use(express.static('../client/dist'));
 
 app.use(express.json());  // Middleware to parse JSON request bodies
 app.use(routes);  // Use the imported routes for handling API endpoints
-
-app.use('/api/users', authMiddleware); // Apply the authentication middleware to the users endpoint
 
 // Sync the Sequelize models with the database
 sequelize.sync({ force: forceDatabaseRefresh }).then(() => {

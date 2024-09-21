@@ -1,5 +1,5 @@
 import { Router, Request, Response } from 'express';
-import { User } from '../../models/user'; // Import the User model
+import { User } from '../models/user.js'; // Import the User model
 import jwt from 'jsonwebtoken';
 
 // Register function to create a new user
