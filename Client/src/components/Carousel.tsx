@@ -1,14 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utils/Carousel.css';
 import { useState, useEffect } from 'react';
-import { Product } from '../interfaces/ShoppingData'; // Assuming this contains the Product interface
+import { Product } from '../interfaces/ShoppingData';  // Assuming this contains the Product interface
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom for navigation
 
 const Carousel = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fetch products immediately when the component mounts
+  // Fetch products when the component mounts
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -26,24 +27,21 @@ const Carousel = () => {
     };
 
     fetchProducts();
-  }, []); // Empty dependency array ensures this runs only once
+  }, []);
 
-  // Return loading spinner while fetching data
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Return error message if there's an issue
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Handle case where no products are available
   if (products.length === 0) {
     return <div>No products available.</div>;
   }
 
-  // Split products into groups of 6
+  // Split products into groups of 5
   const groupedProducts = [];
   for (let i = 0; i < products.length; i += 5) {
     groupedProducts.push(products.slice(i, i + 5));
@@ -51,7 +49,7 @@ const Carousel = () => {
 
   return (
     <div id="multiItemCarousel" className="carousel slide" data-bs-interval="false">
-      {/* Carousel controls - Positioned above the carousel */}
+      {/* Carousel controls positioned above the carousel */}
       <div className="d-flex justify-content-between mb-3">
         <button className="carousel-control-prev" type="button" data-bs-target="#multiItemCarousel" data-bs-slide="prev">
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -69,13 +67,14 @@ const Carousel = () => {
             <div className="d-flex justify-content-center">
               {group.map((product) => (
                 <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
-                  <a href={`/product/${product.id}`} target="_blank" rel="noopener noreferrer">
+                  {/* Use Link to navigate to the product details page */}
+                  <Link to={`/details`}>
                     <img
                       src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
                       className="img-fluid col-10 col-md-10"
                       alt={product.title || 'Product Image'}
                     />
-                  </a>
+                  </Link>
                   <p className="mt-2">{product.title || 'No description available'}</p>
                 </div>
               ))}

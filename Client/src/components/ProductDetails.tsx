@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Product } from '../interfaces/ShoppingData'; // Assuming this contains the Product interface
+import { Product } from '../interfaces/ShoppingData';
+import { product.id } from './Carousel';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -9,6 +10,7 @@ const ProductDetail = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    
     const fetchProduct = async () => {
       try {
         const response = await fetch(`/api/products/${id}`);
