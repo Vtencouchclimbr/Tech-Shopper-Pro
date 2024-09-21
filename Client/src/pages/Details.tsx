@@ -14,9 +14,6 @@ const Details = () => {
       <div className="flex-grow-2">
         <ProductDetail />
       </div>
-      <button style={{ height: '40px' }} className="btn btn-success" type="submit">
-        Add to Cart
-      </button>
     </div>
   );
 };
