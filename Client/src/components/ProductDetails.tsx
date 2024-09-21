@@ -22,7 +22,7 @@ const ProductDetail = () => {
         setProduct(data);
         setLoading(false);
       } catch (error) {
-        setError(error.message);
+        setError((error as Error).message);
         setLoading(false);
       }
     };
@@ -37,8 +37,16 @@ const ProductDetail = () => {
     // Retrieve the current cart from localStorage or initialize an empty array
     const currentCart = JSON.parse(localStorage.getItem('toCart') || '[]');
 
+    const productToAdd = {
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150',  // Add the image URL
+      quantity: 1  // You can handle quantity changes later if needed
+    };
+
     // Add the current product to the cart
-    const updatedCart = [...currentCart, product];
+    const updatedCart = [...currentCart, productToAdd];
 
     // Save the updated cart back into localStorage
     localStorage.setItem('toCart', JSON.stringify(updatedCart));
