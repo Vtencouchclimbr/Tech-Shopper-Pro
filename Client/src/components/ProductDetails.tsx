@@ -1,12 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+
 import { Product } from '../interfaces/ShoppingData';
+import { useLocation } from 'react-router-dom';
+
+
 
 const ProductDetail = () => {
-  const { id } = useParams<{ id: string }>();
+
+  const location = useLocation();
+  const { id } = location.state;
+
+  
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  
 
   useEffect(() => {
     
@@ -55,3 +64,12 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+// // Render ProductDetail if a product is selected
+// if (selectedProductId) {
+//   return <ProductDetail id={selectedProductId} />;
+// }
+
+
+
+// const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
