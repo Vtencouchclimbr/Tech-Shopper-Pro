@@ -65,24 +65,28 @@ const Carousel = () => {
         {groupedProducts.map((group, index) => (
           <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
             <div className="d-flex justify-content-center">
-              {group.map((product) => (
-                <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
-                  {/* Pass the product id through the state property of Link */}
-                  <Link
-                    to={{
-                      pathname: '/details',
-                    }}
-                    state={{ id: product.id }}  // Passing product.id through state
-                  >
-                    <img
-                      src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
-                      className="img-fluid col-10 col-md-10"
-                      alt={product.title || 'Product Image'}
-                    />
-                  </Link>
-                  <p className="mt-2">{product.title || 'No description available'}</p>
-                </div>
-              ))}
+              {group.map((product) => {
+                console.log(product);  // Debug: log product details to the console
+
+                return (
+                  <div className="col-4 col-md-2 text-center" key={product.id} style={{ minWidth: '150px' }}>
+                    {/* Pass the product id through the state property of Link */}
+                    <Link
+                      to={{
+                        pathname: '/details',
+                      }}
+                      state={{ id: product.id }}  // Passing product.id through state
+                    >
+                      <img
+                        src={Array.isArray(product.images) && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/150'}
+                        className="img-fluid col-10 col-md-10"
+                        alt={product.title || 'Product Image'}
+                      />
+                    </Link>
+                    <p className="mt-2">{product.title || 'No description available'}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         ))}

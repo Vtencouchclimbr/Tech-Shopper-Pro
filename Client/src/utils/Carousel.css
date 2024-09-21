@@ -13,14 +13,14 @@
 }
 img {
   height: 100px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: add a shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.8); /* Dark color with some transparency */
-  border-radius: 20%; /* Optional: to make the icon circular */
-  width: 40px; /* Optional: change icon size */
-  height: 40px; /* Optional: change icon size */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: add a shadow */
+  background-color: rgba(0, 0, 0, 0.8); 
+  border-radius: 20%; 
+  width: 40px; 
+  height: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
