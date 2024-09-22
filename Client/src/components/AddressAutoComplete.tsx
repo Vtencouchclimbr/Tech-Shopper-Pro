@@ -1,55 +1,69 @@
 import React, { useState } from 'react';
+import './AddressAutoComplete.css'; 
 
 interface AddressAutoCompleteProps {
     label: string;
     placeholder: string;
     value: string;
     onChange: (value: string) => void;
+    onSelectAddress: (addressDetails: any) => void;  // New prop for handling address selection
 }
 
-// AddressAutoComplete component definition
-const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeholder, value, onChange }) => {
-    // State to hold the list of address suggestions
-    const [suggestions, setSuggestions] = useState<string[]>([]);
-    // Handle input change event
+const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeholder, value, onChange, onSelectAddress }) => {
+    const [suggestions, setSuggestions] = useState<any[]>([]);  // Store the full suggestion objects
+
     const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
-         // Call the onChange prop with the new input value
         onChange(inputValue);
-         // Fetch suggestions if the input value length is greater than 2
         if (inputValue.length > 2) {
             fetchSuggestions(inputValue);
         }
     };
-    // Fetch address suggestions from the API
-    const fetchSuggestions = async (query: string) => {
-        const apiKey = process.env.LOCATION_API_KEY as string;
-        const response = await fetch(`https://api.geocodify.com/v2/autocomplete?api_key=${apiKey}&q=${query}`);
-        const data = await response.json();
 
-        // Update the suggestions state with the fetched data
-        if (data && data.response && data.response.docs) {
-            setSuggestions(data.response.docs.map((doc: any) => doc.formatted));
+    const fetchSuggestions = async (query: string) => {
+        const apiKey = import.meta.env.VITE_LOCATION_API_KEY;
+        const url = `https://api.geocodify.com/v2/autocomplete?api_key=${apiKey}&q=${encodeURIComponent(query)}`;
+        
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data && data.response && data.response.features) {
+                setSuggestions(data.response.features);  // Store the full features to use properties
+            }
+        } catch (error) {
+            console.error('Error fetching suggestions:', error);
         }
+    };
+
+    // Handle selecting a suggestion
+    const handleSelectSuggestion = (suggestion: any) => {
+        // Pass the selected address to the parent
+        onSelectAddress(suggestion.properties);
+        // Update the input field with the selected suggestion
+        onChange(suggestion.properties.label);
+        // Clear the suggestions after selection
+        setSuggestions([]);
     };
 
     return (
         <div className="autocomplete">
-             {/* Label for the input field */}
             <label>{label}</label>
-             {/* Input field for address entry */}
             <input
                 type="text"
                 placeholder={placeholder}
                 value={value}
                 onChange={handleInputChange}
+                className="autocomplete-input"  // Apply a class for styling
             />
-             {/* Display suggestions if there are any */}
             {suggestions.length > 0 && (
-                <ul className="suggestions-list">
+                <ul className="autocomplete-suggestions">  {/* Apply dropdown styling */}
                     {suggestions.map((suggestion, index) => (
-                        <li key={index} onClick={() => onChange(suggestion)}>
-                            {suggestion}
+                        <li
+                            key={index}
+                            onClick={() => handleSelectSuggestion(suggestion)}
+                            className="suggestion-item"
+                        >
+                            {suggestion.properties.label}
                         </li>
                     ))}
                 </ul>
