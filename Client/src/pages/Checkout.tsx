@@ -15,13 +15,14 @@ const Checkout: React.FC = () => {
 
   // Handle address selection and update all fields
   const handleSelectAddress = (addressDetails: any) => {
-    console.log('Selected address details:', addressDetails);  // Debugging: log full address details
-    setStreetAddress(addressDetails.label);  // The full formatted address
-    setCity(addressDetails.localadmin || addressDetails.region || '');  // City or region
-    setStateAddress(addressDetails.region_a || '');  // State code
-    setZipCode(addressDetails.postalcode || '');  // Postal code
-    setCountry(addressDetails.country || '');  // Country
-  };
+    console.log('Address Selected:', addressDetails);
+    setStreetAddress(addressDetails.street);  // Only street address
+    setCity(addressDetails.city);  // City or region
+    setStateAddress(addressDetails.state);  // State code
+    setZipCode(addressDetails.postalCode);  // Postal code
+    setCountry(addressDetails.country);  // Country
+};
+
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -56,7 +57,7 @@ const Checkout: React.FC = () => {
           placeholder="Enter your street address"
           value={streetAddress}
           onChange={setStreetAddress}
-          onSelectAddress={handleSelectAddress}  // Handle the selection
+          onSelectAddress={handleSelectAddress}
         />
 
         <div className="form-group">

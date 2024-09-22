@@ -28,7 +28,7 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
             const response = await fetch(url);
             const data = await response.json();
             if (data && data.response && data.response.features) {
-                setSuggestions(data.response.features);  // Store the full features to use properties
+                setSuggestions(data.response.features); 
             }
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -37,13 +37,29 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
 
     // Handle selecting a suggestion
     const handleSelectSuggestion = (suggestion: any) => {
-        // Pass the selected address to the parent
-        onSelectAddress(suggestion.properties);
-        // Update the input field with the selected suggestion
-        onChange(suggestion.properties.label);
-        // Clear the suggestions after selection
+        console.log("Selected address details:", suggestion.properties);
+    
+        
+        const streetAddress = suggestion.properties.name || '';
+        const city = suggestion.properties.localadmin || suggestion.properties.region || '';
+        const state = suggestion.properties.region_a || '';
+        const postalCode = suggestion.properties.postalcode || '';
+        const country = suggestion.properties.country || '';
+    
+        // Pass only relevant fields to the parent
+        onSelectAddress({
+            street: streetAddress,
+            city: city,
+            state: state,
+            postalCode: postalCode,
+            country: country,
+        });
+    
+        onChange(streetAddress);
+        
         setSuggestions([]);
     };
+    
 
     return (
         <div className="autocomplete">
@@ -53,10 +69,10 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
                 placeholder={placeholder}
                 value={value}
                 onChange={handleInputChange}
-                className="autocomplete-input"  // Apply a class for styling
+                className="autocomplete-input"  
             />
             {suggestions.length > 0 && (
-                <ul className="autocomplete-suggestions">  {/* Apply dropdown styling */}
+                <ul className="autocomplete-suggestions">
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}
