@@ -1,0 +1,10 @@
+@media (min-width: 780px) {
+    .cartText {
+      width: 800px
+    }
+  }
+@media (min-width: 1200px) {
+  .cartText {
+    width: 800px
+  }
+  }

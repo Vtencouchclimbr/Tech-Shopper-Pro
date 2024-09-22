@@ -1,32 +1,33 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLinkedin, faGithub, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faFacebook, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#163865' }} className="text-center py-4">
       <div className="container">
         <div className="d-flex justify-content-center">
-          {/* LinkedIn */}
+          {/* Instagram */}
           <a
             href=""
             target="_blank"
             rel="noopener noreferrer"
             className="mx-3"
-            aria-label="LinkedIn"
+            aria-label="Instagram"
           >
-            <FontAwesomeIcon icon={faLinkedin} style={{ color: '#0e76a8', fontSize: '2rem' }} />
+            <FontAwesomeIcon icon={faInstagram} style={{ color: '#E4405F', fontSize: '2rem' }} />
           </a>
 
-          {/* GitHub */}
+          {/* Facebook */}
           <a
             href=""
             target="_blank"
             rel="noopener noreferrer"
             className="mx-3"
-            aria-label="GitHub"
+            aria-label="Facebook"
           >
-            <FontAwesomeIcon icon={faGithub} style={{ color: '#97e3b8', fontSize: '2rem' }} />
+            <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2', fontSize: '2rem' }} />
           </a>
+
 
           {/* X (Twitter) */}
           <a
