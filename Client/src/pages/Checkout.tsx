@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import AddressAutocomplete from '../components/AddressAutoComplete';
 import { useCart } from '../components/CartState';
+<<<<<<< HEAD
 import { CartItem } from './Cart';  // Import CartItem interface from Cart.tsx
 import '../utils/Checkout.css';
+=======
+>>>>>>> 1668b3f9f6be7d835434e072b37823bb2d4dd8d2
 
 const Checkout: React.FC = () => {
   const { state } = useCart();  // Access cart state
-  const cartItems: CartItem[] = state.items;  // Extract cart items
+  const { items: cartItems } = state;  // Extract cart items
 
   // State for address fields
   const [streetAddress, setStreetAddress] = useState('');
@@ -15,15 +18,19 @@ const Checkout: React.FC = () => {
   const [zipCode, setZipCode] = useState('');
   const [country, setCountry] = useState('');
 
-  // Calculate total price
+  // Handle address selection and update all fields
+  const handleSelectAddress = (addressDetails: any) => {
+    console.log('Address Selected:', addressDetails);
+    setStreetAddress(addressDetails.street);  // Only street address
+    setCity(addressDetails.city);  // City or region
+    setStateAddress(addressDetails.state);  // State code
+    setZipCode(addressDetails.postalCode);  // Postal code
+    setCountry(addressDetails.country);  // Country
+};
+
+
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  // Add useEffect to log cartItems to ensure all items have an image property
-  useEffect(() => {
-    console.log("Cart items in checkout:", cartItems);
-  }, [cartItems]);  // Log whenever cartItems change
-
-  // Handle form submission
   const handleFormSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log('Form submitted with:', { streetAddress, city, stateAddress, zipCode, country, cartItems });
@@ -35,6 +42,7 @@ const Checkout: React.FC = () => {
       <h1 className="text-center mb-4">Checkout</h1>
 
       {/* Cart Summary Section */}
+<<<<<<< HEAD
       <div className="cart-summary mb-4">
         <h2 className="mb-3">Cart Summary</h2>
         <ul className="list-group">
@@ -51,6 +59,15 @@ const Checkout: React.FC = () => {
                 <span>{item.name}</span>
               </div>
               <span>{item.quantity} x ${item.price} = ${(item.price * item.quantity).toFixed(2)}</span>
+=======
+      <div className="cart-summary">
+        <h2>Cart Summary</h2>
+        <ul>
+          {cartItems.map((item) => (
+            <li key={item.id}>
+              <img src={item.image || 'https://via.placeholder.com/150'} alt={item.name} style={{ width: '100px', marginRight: '10px' }} />
+              {item.name} - {item.quantity} x ${item.price} = ${(item.price * item.quantity).toFixed(2)}
+>>>>>>> 1668b3f9f6be7d835434e072b37823bb2d4dd8d2
             </li>
           ))}
         </ul>
@@ -58,6 +75,7 @@ const Checkout: React.FC = () => {
       </div>
 
       {/* Checkout Form Section */}
+<<<<<<< HEAD
       <form onSubmit={handleFormSubmit} className="needs-validation cartText">
         <div className="row">
           <div className="col-md-9">
@@ -70,6 +88,16 @@ const Checkout: React.FC = () => {
                   onChange={setStreetAddress}
                 />
               </div>
+=======
+      <form onSubmit={handleFormSubmit}>
+        <AddressAutocomplete
+          label="Street Address"
+          placeholder="Enter your street address"
+          value={streetAddress}
+          onChange={setStreetAddress}
+          onSelectAddress={handleSelectAddress}
+        />
+>>>>>>> 1668b3f9f6be7d835434e072b37823bb2d4dd8d2
 
               <div className="col-md-6 mb-3">
                 <label htmlFor="city">City</label>

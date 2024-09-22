@@ -17,10 +17,9 @@ interface CartContextProps {
     dispatch: React.Dispatch<any>;
 }
 
-// Create a context for the cart with an undefined initial value
+
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
-// Reducer function to manage the cart state based on actions
 const cartReducer = (state: CartState, action: any): CartState => {
     switch (action.type) {
         case 'ADD_ITEM':
@@ -48,7 +47,7 @@ const cartReducer = (state: CartState, action: any): CartState => {
     }
 };
 
-// Provider component to wrap the application and provide cart state and dispatch function
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     // Load initial state from localStorage, or use an empty array
     const initialState = {
