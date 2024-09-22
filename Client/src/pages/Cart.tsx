@@ -31,30 +31,53 @@ const Cart: React.FC = () => {
   };
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  
+
   return (
-    <div className="cart-page">
-      <h1>Your Cart</h1>
+    <div className="container my-1"> {/* Reduced margin for closer "Your Cart" text */}
+      <h1 className="text-center mb-5 cartText">Your Cart</h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p className="text-center">Your cart is empty</p>
       ) : (
         <>
-          <ul>
+          <ul className="list-group mb-4">
             {cartItems.map((item) => (
-              <li key={item.id}>
-                {/* Display the product image with fallback */}
-                <img src={item.image || 'https://via.placeholder.com/150'} alt={item.name} style={{ width: '100px', marginRight: '10px' }} />
-                <span>{item.name} - Price: ${item.price}</span>
-                <button onClick={() => handleMoveToWishlist(item)}>Move to Wishlist</button>
-                <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+              <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center">
+                <div className="d-flex align-items-center mt-5">
+                  {/* Display the product image with fallback */}
+                  <img
+                    src={item.image || 'https://via.placeholder.com/150'}
+                    alt={item.name}
+                    className="img-fluid me-3"
+                    style={{ width: '100px', height: 'auto' }} // 1.5 times the previous size
+                  />
+                  <span>{item.name}</span>
+                </div>
+                <div className="d-flex flex-column text-end">
+                  <span className="mb-2 small">Price: ${item.price.toFixed(2)}</span> {/* Slightly smaller price text */}
+                  <div className="btn-group">
+                    <button
+                      className="btn btn-sm btn-outline-secondary"
+                      onClick={() => handleMoveToWishlist(item)}
+                    >
+                      Move to Wishlist
+                    </button>
+                    <button
+                      className="btn btn-sm btn-outline-danger"
+                      onClick={() => handleRemoveItem(item.id)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
-        <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
-
-          <Link to="/checkout">
-            <button className="btn btn-primary">Proceed to Checkout</button>
-          </Link>
+          <div className="text-center mb-4"> {/* Centered total price and button */}
+            <h3 className="mb-3">Total Price: ${totalPrice.toFixed(2)}</h3>
+            <Link to="/checkout">
+              <button className="btn btn-primary">Proceed to Checkout</button>
+            </Link>
+          </div>
         </>
       )}
     </div>
