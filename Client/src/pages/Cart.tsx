@@ -50,7 +50,7 @@ const Cart: React.FC = () => {
               </li>
             ))}
           </ul>
-          <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+        <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
 
           <Link to="/checkout">
             <button className="btn btn-primary">Proceed to Checkout</button>
