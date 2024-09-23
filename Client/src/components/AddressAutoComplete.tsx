@@ -19,15 +19,6 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
             fetchSuggestions(inputValue);
         }
     };
-<<<<<<< HEAD
-    // Fetch address suggestions from the API
-    const fetchSuggestions = async (query: string) => {
-        const apiKey = process.env.LOCATION_API_KEY as string;
-        const response = await fetch(`https://api.geocodify.com/v2/autocomplete?api_key=${apiKey}&q=${query}`);
-        const data = await response.json();
-        console.log(data);
-=======
->>>>>>> 1668b3f9f6be7d835434e072b37823bb2d4dd8d2
 
     const fetchSuggestions = async (query: string) => {
         const apiKey = import.meta.env.VITE_LOCATION_API_KEY;

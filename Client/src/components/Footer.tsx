@@ -4,7 +4,7 @@ import { faInstagram, faFacebook, faXTwitter } from '@fortawesome/free-brands-sv
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#163865' }} className="text-center py-4">
-      <div className="container">
+      <div className="footer-container"> {/* Changed from 'container' to 'footer-container' */}
         <div className="d-flex justify-content-center">
           {/* Instagram */}
           <a
@@ -27,7 +27,6 @@ export default function Footer() {
           >
             <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2', fontSize: '2rem' }} />
           </a>
-
 
           {/* X (Twitter) */}
           <a
