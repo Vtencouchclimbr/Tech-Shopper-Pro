@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddressAutoComplete.css'; 
+import './AddressAutoComplete.css';
 
 interface AddressAutoCompleteProps {
     label: string;
@@ -19,15 +19,6 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
             fetchSuggestions(inputValue);
         }
     };
-<<<<<<< HEAD
-    // Fetch address suggestions from the API
-    const fetchSuggestions = async (query: string) => {
-        const apiKey = process.env.LOCATION_API_KEY as string;
-        const response = await fetch(`https://api.geocodify.com/v2/autocomplete?api_key=${apiKey}&q=${query}`);
-        const data = await response.json();
-        console.log(data);
-=======
->>>>>>> 1668b3f9f6be7d835434e072b37823bb2d4dd8d2
 
     const fetchSuggestions = async (query: string) => {
         const apiKey = import.meta.env.VITE_LOCATION_API_KEY;
@@ -37,7 +28,7 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
             const response = await fetch(url);
             const data = await response.json();
             if (data && data.response && data.response.features) {
-                setSuggestions(data.response.features); 
+                setSuggestions(data.response.features);  // Store the full features to use properties
             }
         } catch (error) {
             console.error('Error fetching suggestions:', error);
@@ -48,8 +39,8 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
     const handleSelectSuggestion = (suggestion: any) => {
         console.log("Selected address details:", suggestion.properties);
     
-        
-        const streetAddress = suggestion.properties.name || '';
+        // Extract street address specifically, to avoid redundancy
+        const streetAddress = suggestion.properties.name || '';  // You can adjust this based on the exact property that contains the street
         const city = suggestion.properties.localadmin || suggestion.properties.region || '';
         const state = suggestion.properties.region_a || '';
         const postalCode = suggestion.properties.postalcode || '';
@@ -64,8 +55,10 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
             country: country,
         });
     
+        // Set the street address only in the input field
         onChange(streetAddress);
         
+        // Clear suggestions after selection
         setSuggestions([]);
     };
     
@@ -78,10 +71,10 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
                 placeholder={placeholder}
                 value={value}
                 onChange={handleInputChange}
-                className="autocomplete-input"  
+                className="autocomplete-input"  // Apply a class for styling
             />
             {suggestions.length > 0 && (
-                <ul className="autocomplete-suggestions">
+                <ul className="autocomplete-suggestions">  {/* Apply dropdown styling */}
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}

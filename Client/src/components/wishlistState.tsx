@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 import '../utils/offCanvas.css';
 
-interface WishlistItem {
+export  interface WishlistItem {
     id: number;
     name: string;
     price: number;
+    image: string;
 }
 
 interface WishlistState {
