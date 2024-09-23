@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../components/CartState';  // Use the global cart state
-import { useWishlist } from '../components/wishlistSate';
+import { useWishlist } from '../components/wishlistState';
 
 // Defines the structure of a cart item
 export interface CartItem {
@@ -27,7 +27,7 @@ const Cart: React.FC = () => {
   // Function to move an item to the wishlist
   const handleMoveToWishlist = (item: CartItem) => {
     handleRemoveItem(item.id);  // Remove the item from the cart
-    wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: { id: item.id, name: item.name, price: item.price } });
+    wishlistDispatch({ type: 'ADD_TO_WISHLIST', payload: { id: item.id, name: item.name, price: item.price, image: item.image } });
   };
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
