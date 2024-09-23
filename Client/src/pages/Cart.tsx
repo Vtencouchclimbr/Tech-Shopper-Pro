@@ -71,7 +71,7 @@ const Cart: React.FC = () => {
           <div className="text-center mb-4">
             <h3 className="mb-3">Total Price: ${totalPrice.toFixed(2)}</h3>
             <Link to="/checkout">
-              <button className="btn btn-primary w-100 w-md-auto proceedBtn">Proceed to Checkout</button>
+              <button className="btn btn-primary w-md-auto proceedBtn">Proceed to Checkout</button>
             </Link>
           </div>
         </>

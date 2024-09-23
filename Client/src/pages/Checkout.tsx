@@ -31,7 +31,7 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="container my-4 vh-100">
+    <div className="container my-4">
       <h1 className="text-center mb-4">Checkout</h1>
 
       {/* Cart Summary Section */}
