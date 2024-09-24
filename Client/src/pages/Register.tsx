@@ -57,7 +57,7 @@ function Register() {
     e.preventDefault();
 
     if (!validateForm()) return;  // Prevent submission if form is invalid
-    console.log(formInfo);
+    console.log('i', formInfo);
 
     try {
       const response = await fetch('/auth/register', {
