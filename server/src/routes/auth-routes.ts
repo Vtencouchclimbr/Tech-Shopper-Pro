@@ -104,4 +104,4 @@ router.post('/register', register); // Define the register route
 // POST /login - Login a user
 router.post('/login', login); // Define the login route
 
-export default router;
+export default router

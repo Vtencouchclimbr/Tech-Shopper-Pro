@@ -12,7 +12,7 @@ import Checkout from './pages/Checkout.tsx'
 import Cart from './pages/Cart.tsx'
 
 import { CartProvider } from './components/CartState.tsx';
-import { WishlistProvider } from './components/wishlistSate.tsx';
+import { WishlistProvider } from './components/wishlistState.tsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';

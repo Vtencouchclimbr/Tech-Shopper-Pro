@@ -27,3 +27,10 @@
     margin-top: 1rem;
   }
   
+  .off-canvas-body img {
+    display: block;  /* Ensure the image is displayed */
+    width: 100px;    /* Adjust the size as needed */
+    height: auto;    /* Maintain aspect ratio */
+    margin-bottom: 1rem;  /* Add some space below the image */
+  }
+  
