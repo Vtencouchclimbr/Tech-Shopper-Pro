@@ -57,9 +57,10 @@ function Register() {
     e.preventDefault();
 
     if (!validateForm()) return;  // Prevent submission if form is invalid
+    console.log('i', formInfo);
 
     try {
-      const response = await fetch('http://localhost:3001/auth/register', {
+      const response = await fetch('/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

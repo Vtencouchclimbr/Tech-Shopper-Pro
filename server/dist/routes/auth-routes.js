@@ -1,27 +1,33 @@
 import { Router } from 'express';
 import { User } from '../models/user.js'; // Import the User model
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 // Register function to create a new user
 export const register = async (req, res) => {
     const { username, email, password } = req.body; // Extract registration data
+    console.log('username', username, 'email', email, 'password', password);
     try {
         // Check if the user already exists based on email
-        const existingUser = await User.findOne({ where: { email } });
-        if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
-        }
+        // const existingUser = await User.findOne({ where: { email } });
+        // if (existingUser) {
+        //   return res.status(400).json({ message: 'User already exists' });
+        // }
         // Create a new user (password hashing is handled in the User model)
         const newUser = await User.create({
             username: `${username}`, // Optionally combine first and last name as username
             email,
             password, // Plain password, hashed by the model's beforeCreate hook
         });
+        console.log('newUser', newUser);
         // Generate a JWT token for the newly registered user
         const secretKey = process.env.JWT_SECRET_KEY;
+        console.log('secret', secretKey);
         if (!secretKey) {
             throw new Error('JWT secret key is not defined');
         }
         const token = jwt.sign({ id: newUser.id, email: newUser.email }, secretKey, { expiresIn: '1h' });
+        console.log('token', token);
         // Send the token and new user info as a JSON response
         return res.status(201).json({
             message: 'Registration successful',
@@ -81,4 +87,5 @@ const router = Router();
 router.post('/register', register); // Define the register route
 // POST /login - Login a user
 router.post('/login', login); // Define the login route
+console.log(router);
 export default router;
