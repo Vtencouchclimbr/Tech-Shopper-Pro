@@ -7,7 +7,7 @@ const Details = () => {
     <div className="container-fluid d-flex flex-column min-vh-100">
       {/* SearchBar that sticks to the top */}
       <div>
-        <SearchBar onSearch={(query: string) => console.log(query)} />
+        <SearchBar />
       </div>
 
       {/* Product Details */}

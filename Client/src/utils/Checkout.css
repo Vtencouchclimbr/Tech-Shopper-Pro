@@ -1,8 +1,9 @@
 /* For screens 780px and above */
 @media (min-width: 780px) {
   .cartText {
-   display: flex;
-   align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 

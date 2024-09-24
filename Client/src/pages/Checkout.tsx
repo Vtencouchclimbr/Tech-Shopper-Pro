@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import AddressAutocomplete from '../components/AddressAutoComplete';
 import { useCart } from '../components/CartState';
-//import '../utils/Checkout.css';
+
+interface AddressDetails {
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+}
 
 const Checkout: React.FC = () => {
   const { state } = useCart();
-  const { items: cartItems } = state;  
+  const { items: cartItems } = state;
 
   // State for address fields
   const [streetAddress, setStreetAddress] = useState('');
@@ -15,14 +22,14 @@ const Checkout: React.FC = () => {
   const [country, setCountry] = useState('');
 
   // Handles address selection and update all fields
-  const handleSelectAddress = (addressDetails: any) => {
+  const handleSelectAddress = (addressDetails: AddressDetails) => {
     console.log('Address Selected:', addressDetails);
-    setStreetAddress(addressDetails.street);  
-    setCity(addressDetails.city);  
-    setStateAddress(addressDetails.state);  
-    setZipCode(addressDetails.postalCode);  
-    setCountry(addressDetails.country);  
-};
+    setStreetAddress(addressDetails.street);
+    setCity(addressDetails.city);
+    setStateAddress(addressDetails.state);
+    setZipCode(addressDetails.postalCode);
+    setCountry(addressDetails.country);
+  };
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -33,74 +40,97 @@ const Checkout: React.FC = () => {
   };
 
   return (
-    <div className="checkout-page">
-      <h1>Checkout</h1>
+    <div className="container my-4">
+      <h1 className="text-center mb-4">Checkout</h1>
 
       {/* Cart Summary Section */}
-      <div className="cart-summary">
+      <div className="cart-summary mb-4">
         <h2>Cart Summary</h2>
-        <ul>
+        <ul className="list-group">
           {cartItems.map((item) => (
-            <li key={item.id}>
-              <img src={item.image || 'https://via.placeholder.com/150'} alt={item.name} style={{ width: '100px', marginRight: '10px' }} />
-              {item.name} - {item.quantity} x ${item.price} = ${(item.price * item.quantity).toFixed(2)}
+            <li key={item.id} className="list-group-item d-flex align-items-center">
+              <img
+                src={item.image || 'https://via.placeholder.com/150'}
+                alt={item.name}
+                className="img-fluid me-3"
+                style={{ width: '100px' }}
+              />
+              <div>
+                {item.name} - {item.quantity} x ${item.price} = ${(item.price * item.quantity).toFixed(2)}
+              </div>
             </li>
           ))}
         </ul>
-        <h3>Total: ${totalPrice.toFixed(2)}</h3>
+        <h3 className="mt-3">Total: ${totalPrice.toFixed(2)}</h3>
       </div>
 
       {/* Checkout Form Section */}
       <form onSubmit={handleFormSubmit}>
-        <AddressAutocomplete
-          label="Street Address"
-          placeholder="Enter your street address"
-          value={streetAddress}
-          onChange={setStreetAddress}
-          onSelectAddress={handleSelectAddress}  
-        />
-
-        <div className="form-group">
-          <label>City</label>
-          <input
-            type="text"
-            placeholder="Enter your city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
+        <div className="row mb-3">
+          <div className="col-12">
+            <AddressAutocomplete
+              label="Street Address"
+              placeholder="Enter your street address"
+              value={streetAddress}
+              onChange={setStreetAddress}
+              onSelectAddress={handleSelectAddress}
+            />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label>State</label>
-          <input
-            type="text"
-            placeholder="Enter your state"
-            value={stateAddress}
-            onChange={(e) => setStateAddress(e.target.value)}
-          />
+        <div className="row">
+          <div className="col-12 col-md-6 mb-3">
+            <label htmlFor="city" className="form-label">City</label>
+            <input
+              type="text"
+              id="city"
+              className="form-control"
+              placeholder="Enter your city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
+
+          <div className="col-12 col-md-6 mb-3">
+            <label htmlFor="state" className="form-label">State</label>
+            <input
+              type="text"
+              id="state"
+              className="form-control"
+              placeholder="Enter your state"
+              value={stateAddress}
+              onChange={(e) => setStateAddress(e.target.value)}
+            />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label>Zip Code</label>
-          <input
-            type="text"
-            placeholder="Enter your zip code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-          />
+        <div className="row">
+          <div className="col-12 col-md-6 mb-3">
+            <label htmlFor="zip" className="form-label">Zip Code</label>
+            <input
+              type="text"
+              id="zip"
+              className="form-control"
+              placeholder="Enter your zip code"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+            />
+          </div>
+
+          <div className="col-12 col-md-6 mb-3">
+            <label htmlFor="country" className="form-label">Country</label>
+            <input
+              type="text"
+              id="country"
+              className="form-control"
+              placeholder="Enter your country"
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+            />
+          </div>
         </div>
 
-        <div className="form-group">
-          <label>Country</label>
-          <input
-            type="text"
-            placeholder="Enter your country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
-          />
-        </div>
-
-        <button type="submit">Proceed to Payment</button>
+        <button type="submit" className="btn btn-primary w-100">Proceed to Payment</button>
       </form>
     </div>
   );
