@@ -20,12 +20,17 @@ const Carousel = () => {
         const data = await response.json();
         setProducts(data);
         setLoading(false);
-      } catch (error) {
-        setError(error.message);
+      } catch (error: unknown) {
+        // Type guard to ensure the error is an instance of Error
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError('An unknown error occurred');
+        }
         setLoading(false);
       }
     };
-
+  
     fetchProducts();
   }, []);
 

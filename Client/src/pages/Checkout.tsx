@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddressAutocomplete from '../components/AddressAutoComplete';
 import { useCart } from '../components/CartState';
+//import '../utils/Checkout.css';
 
 const Checkout: React.FC = () => {
   const { state } = useCart();

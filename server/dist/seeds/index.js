@@ -1,19 +1,18 @@
-"use strict";
-// import { seedFeedback } from './feedback-seeds.js';
-// import { seedTips } from './tip-seeds.js';
-// import sequelize from '../config/connection.js';
-// const seedAll = async (): Promise<void> => {
-//   try {
-//     await sequelize.sync({ force: true });
-//     console.log('\n----- DATABASE SYNCED -----\n');
-//     await seedFeedback();
-//     console.log('\n----- FEEDBACK SEEDED -----\n');
-//     await seedTips();
-//     console.log('\n----- TIP SEEDED -----\n');
-//     process.exit(0);
-//   } catch (error) {
-//     console.error('Error seeding database:', error);
-//     process.exit(1);
-//   }
-// };
-// seedAll();
+import { User } from '../models/user.js'; // Import the User model
+import { userSeedData } from './user-seeds.js'; // Import the seed data array
+import sequelize from '../config/connection.js';
+const seedAll = async () => {
+    try {
+        await sequelize.sync({ force: true });
+        console.log('\n----- DATABASE SYNCED -----\n');
+        // Use bulkCreate to seed the user data, with individualHooks to hash passwords
+        await User.bulkCreate(userSeedData, { individualHooks: true });
+        console.log('\n----- USERS SEEDED -----\n');
+        process.exit(0);
+    }
+    catch (error) {
+        console.error('Error seeding database:', error);
+        process.exit(1);
+    }
+};
+seedAll();
