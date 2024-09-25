@@ -55,7 +55,6 @@ const Cart: React.FC = () => {
                     <button
                       className="btn btn-sm btn-outline-secondary"
                       onClick={() => handleMoveToWishlist(item)}
-                      style={{ marginLeft: '25px' }}
                     >
                       Move to Wishlist
                     </button>

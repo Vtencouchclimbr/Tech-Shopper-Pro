@@ -12,43 +12,30 @@ interface CartState {
     items: CartItem[];
 }
 
-interface AddItemAction {
-    type: 'ADD_ITEM';
-    payload: CartItem;
-}
-
-interface RemoveItemAction {
-    type: 'REMOVE_ITEM';
-    payload: number; // id of the item to remove
-}
-
-interface UpdateItemAction {
-    type: 'UPDATE_ITEM';
-    payload: { id: number; quantity: number };
-}
-
-type CartAction = AddItemAction | RemoveItemAction | UpdateItemAction;
-
 interface CartContextProps {
     state: CartState;
-    dispatch: React.Dispatch<CartAction>;
+    dispatch: React.Dispatch<any>;
 }
+
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
 
-const cartReducer = (state: CartState, action: CartAction): CartState => {
+const cartReducer = (state: CartState, action: any): CartState => {
     switch (action.type) {
         case 'ADD_ITEM':
+            // Add a new item to the cart
             return {
                 ...state,
-                items: [...state.items, action.payload],
+                items: [...state.items, action.payload]
             };
         case 'REMOVE_ITEM':
+            // Remove an item from the cart by filtering it out
             return {
                 ...state,
-                items: state.items.filter(item => item.id !== action.payload),
+                items: state.items.filter(item => item.id !== action.payload)
             };
         case 'UPDATE_ITEM':
+            // Update the quantity of an existing item in the cart
             return {
                 ...state,
                 items: state.items.map(item =>
@@ -59,6 +46,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
             return state;
     }
 };
+
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
     // Load initial state from localStorage, or use an empty array
