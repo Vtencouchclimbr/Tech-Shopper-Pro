@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 import '../utils/offCanvas.css';
 
-export interface WishlistItem {
+export  interface WishlistItem {
     id: number;
     name: string;
     price: number;
@@ -12,38 +12,29 @@ interface WishlistState {
     items: WishlistItem[];
 }
 
-interface AddToWishlistAction {
-    type: 'ADD_TO_WISHLIST';
-    payload: WishlistItem;
-}
-
-interface RemoveFromWishlistAction {
-    type: 'REMOVE_FROM_WISHLIST';
-    payload: number; // id of the item to remove
-}
-
-type WishlistAction = AddToWishlistAction | RemoveFromWishlistAction;
-
 interface WishlistContextProps {
     state: WishlistState;
-    dispatch: React.Dispatch<WishlistAction>;
+    dispatch: React.Dispatch<any>;
 }
 
 // Creates context for the wishlist with an undefined initial value
 const WishlistContext = createContext<WishlistContextProps | undefined>(undefined);
 
 // Reducer function to manage the wishlist state based on actions
-const wishlistReducer = (state: WishlistState, action: WishlistAction): WishlistState => {
+const wishlistReducer = (state: WishlistState, action: any): WishlistState => {
     switch (action.type) {
         case 'ADD_TO_WISHLIST':
+            // Adds a new item to the wishlist
             return {
                 ...state, items: [...state.items, action.payload]
             };
         case 'REMOVE_FROM_WISHLIST':
+            // Removes an item from the wishlist by filtering it out
             return {
                 ...state, items: state.items.filter(item => item.id !== action.payload)
             };
         default:
+            // Returns the current state if the action type is not recognized
             return state;
     }
 };
@@ -54,6 +45,7 @@ export const WishlistProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(wishlistReducer, { items: [] });
 
     return (
+         // Provides the wishlist state and dispatch function to the context
         <WishlistContext.Provider value={{ state, dispatch }}>
             {children}
         </WishlistContext.Provider>

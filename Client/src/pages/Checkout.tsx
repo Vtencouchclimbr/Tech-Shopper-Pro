@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import AddressAutocomplete from '../components/AddressAutoComplete';
 import { useCart } from '../components/CartState';
-
-interface AddressDetails {
-  street: string;
-  city: string;
-  state: string;
-  postalCode: string;
-  country: string;
-}
+//import '../utils/Checkout.css';
 
 const Checkout: React.FC = () => {
   const { state } = useCart();
-  const { items: cartItems } = state;
+  const { items: cartItems } = state;  
 
   // State for address fields
   const [streetAddress, setStreetAddress] = useState('');
@@ -22,14 +15,14 @@ const Checkout: React.FC = () => {
   const [country, setCountry] = useState('');
 
   // Handles address selection and update all fields
-  const handleSelectAddress = (addressDetails: AddressDetails) => {
+  const handleSelectAddress = (addressDetails: any) => {
     console.log('Address Selected:', addressDetails);
-    setStreetAddress(addressDetails.street);
-    setCity(addressDetails.city);
-    setStateAddress(addressDetails.state);
-    setZipCode(addressDetails.postalCode);
-    setCountry(addressDetails.country);
-  };
+    setStreetAddress(addressDetails.street);  
+    setCity(addressDetails.city);  
+    setStateAddress(addressDetails.state);  
+    setZipCode(addressDetails.postalCode);  
+    setCountry(addressDetails.country);  
+};
 
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
@@ -42,7 +35,6 @@ const Checkout: React.FC = () => {
   return (
     <div className="container my-4">
       <h1 className="text-center mb-4">Checkout</h1>
-
       {/* Cart Summary Section */}
       <div className="cart-summary mb-4">
         <h2>Cart Summary</h2>
@@ -63,7 +55,6 @@ const Checkout: React.FC = () => {
         </ul>
         <h3 className="mt-3">Total: ${totalPrice.toFixed(2)}</h3>
       </div>
-
       {/* Checkout Form Section */}
       <form onSubmit={handleFormSubmit}>
         <div className="row mb-3">
@@ -77,7 +68,6 @@ const Checkout: React.FC = () => {
             />
           </div>
         </div>
-
         <div className="row">
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="city" className="form-label">City</label>
@@ -90,7 +80,6 @@ const Checkout: React.FC = () => {
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
-
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="state" className="form-label">State</label>
             <input
@@ -103,7 +92,6 @@ const Checkout: React.FC = () => {
             />
           </div>
         </div>
-
         <div className="row">
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="zip" className="form-label">Zip Code</label>
@@ -116,7 +104,6 @@ const Checkout: React.FC = () => {
               onChange={(e) => setZipCode(e.target.value)}
             />
           </div>
-
           <div className="col-12 col-md-6 mb-3">
             <label htmlFor="country" className="form-label">Country</label>
             <input
@@ -129,11 +116,9 @@ const Checkout: React.FC = () => {
             />
           </div>
         </div>
-
         <button type="submit" className="btn btn-primary w-100">Proceed to Payment</button>
       </form>
     </div>
   );
 };
-
 export default Checkout;

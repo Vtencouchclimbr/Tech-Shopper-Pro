@@ -1,38 +1,16 @@
 import React, { useState } from 'react';
 import './AddressAutoComplete.css';
 
-interface AddressDetails {
-    street: string;
-    city: string;
-    state: string;
-    postalCode: string;
-    country: string;
-}
-
-interface SuggestionProperties {
-    label: string;
-    name?: string;
-    localadmin?: string;
-    region?: string;
-    region_a?: string;
-    postalcode?: string;
-    country?: string;
-}
-
-interface Suggestion {
-    properties: SuggestionProperties;
-}
-
 interface AddressAutoCompleteProps {
     label: string;
     placeholder: string;
     value: string;
     onChange: (value: string) => void;
-    onSelectAddress: (addressDetails: AddressDetails) => void;  // Use specific type for address details
+    onSelectAddress: (addressDetails: any) => void;  // New prop for handling address selection
 }
 
 const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeholder, value, onChange, onSelectAddress }) => {
-    const [suggestions, setSuggestions] = useState<Suggestion[]>([]);  // Define a more specific type for suggestions
+    const [suggestions, setSuggestions] = useState<any[]>([]);  // Store the full suggestion objects
 
     const handleInputChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = e.target.value;
@@ -58,7 +36,7 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
     };
 
     // Handle selecting a suggestion
-    const handleSelectSuggestion = (suggestion: Suggestion) => {
+    const handleSelectSuggestion = (suggestion: any) => {
         console.log("Selected address details:", suggestion.properties);
     
         // Extract street address specifically, to avoid redundancy
@@ -84,6 +62,7 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
         setSuggestions([]);
     };
     
+
     return (
         <div className="autocomplete">
             <label>{label}</label>
@@ -92,10 +71,10 @@ const AddressAutoComplete: React.FC<AddressAutoCompleteProps> = ({ label, placeh
                 placeholder={placeholder}
                 value={value}
                 onChange={handleInputChange}
-                className="autocomplete-input"
+                className="autocomplete-input"  // Apply a class for styling
             />
             {suggestions.length > 0 && (
-                <ul className="autocomplete-suggestions">
+                <ul className="autocomplete-suggestions">  {/* Apply dropdown styling */}
                     {suggestions.map((suggestion, index) => (
                         <li
                             key={index}
