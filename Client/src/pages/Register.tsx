@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../utils/Register.css';
+import { Link } from 'react-router-dom';
 
 function Register() {
   const [formInfo, setFormInfo] = useState({
@@ -153,9 +154,9 @@ function Register() {
               Submit
             </button>
           </div>
-          <a href="/" className="btn btn-link">
+          <Link to="/" className="btn btn-link">
             Already have an account? Login here!
-          </a>
+          </Link>
         </form>
       </div>
     </div>

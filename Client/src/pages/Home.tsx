@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Auth from '../utils/auth.ts';
+import { Link } from 'react-router-dom';
 
 function Login() {
   const [formInfo, setFormInfo] = useState({
@@ -86,7 +87,9 @@ function Login() {
               Submit
             </button>
           </div>
-          <a href="/register" className="btn btn-link">Don't have an account? Register here</a>
+          <Link to="/register" className="btn btn-link">
+            Don't have an account? Register here
+          </Link>
         </form>
       </div>
     </div>
