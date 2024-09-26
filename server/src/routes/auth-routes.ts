@@ -17,7 +17,7 @@ console.log('username', username, 'email', email, 'password', password);
 
     // Create a new user (password hashing is handled in the User model)
     const newUser = await User.create({
-      username: `${username}`, // Optionally combine first and last name as username
+      username, 
       email,
       password, // Plain password, hashed by the model's beforeCreate hook
     });
