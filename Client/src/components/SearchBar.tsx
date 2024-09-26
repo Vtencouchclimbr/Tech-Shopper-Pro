@@ -1,14 +1,22 @@
 import { useState } from 'react';
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (query: string) => void;
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
   const handleSearch = (event: React.FormEvent) => {
     event.preventDefault();
     if (query.trim()) {
+      console.log(query);
+      onSearch(query);  // Call the onSearch prop with the query
+    } else {
       alert("Item not found");
     }
   };
+
 
   return (
     <form className="d-flex mx-auto" role="search" style={{ width: '50%' }} onSubmit={handleSearch}>
