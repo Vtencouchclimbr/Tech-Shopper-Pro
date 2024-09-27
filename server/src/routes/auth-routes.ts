@@ -54,7 +54,7 @@ console.log('token', token);
 // Login function to authenticate a user
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
+  console.log('username', username, 'password', password);
   try {
     // Find the user in the database by username
     const user = await User.findOne({ where: { username } });
