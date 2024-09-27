@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faFacebook, faXTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -7,37 +8,37 @@ export default function Footer() {
       <div className="footer-container"> {/* Changed from 'container' to 'footer-container' */}
         <div className="d-flex justify-content-center">
           {/* Instagram */}
-          <a
-            href=""
+          <Link
+            to="https://www.instagram.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-3"
             aria-label="Instagram"
           >
             <FontAwesomeIcon icon={faInstagram} style={{ color: '#E4405F', fontSize: '2rem' }} />
-          </a>
+          </Link>
 
           {/* Facebook */}
-          <a
-            href=""
+          <Link
+            to="https://www.facebook.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-3"
             aria-label="Facebook"
           >
             <FontAwesomeIcon icon={faFacebook} style={{ color: '#1877F2', fontSize: '2rem' }} />
-          </a>
+          </Link>
 
           {/* X (Twitter) */}
-          <a
-            href=""
+          <Link
+            to="https://x.com/home"
             target="_blank"
             rel="noopener noreferrer"
             className="mx-3"
             aria-label="X (Twitter)"
           >
             <FontAwesomeIcon icon={faXTwitter} style={{ color: '#e1e7a6', fontSize: '2rem' }} />
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

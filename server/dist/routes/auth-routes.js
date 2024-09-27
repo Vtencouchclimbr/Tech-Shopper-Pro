@@ -47,6 +47,7 @@ export const register = async (req, res) => {
 // Login function to authenticate a user
 export const login = async (req, res) => {
     const { username, password } = req.body;
+    console.log('username', username, 'password', password);
     try {
         // Find the user in the database by username
         const user = await User.findOne({ where: { username } });

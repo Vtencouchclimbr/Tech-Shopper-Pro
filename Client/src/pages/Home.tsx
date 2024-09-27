@@ -16,7 +16,7 @@ function Login() {
     e.preventDefault();
     try {
       // Call the login API endpoint with formInfo data
-      const response = await fetch('/auth/login', {
+      const response = await fetch('http://localhost:3001/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -32,6 +32,7 @@ function Login() {
 
       // Parse the response and log in the user
       const data = await response.json();
+      console.log('Login response', data);
       Auth.login(data.token);
 
       // Reset form after submission
