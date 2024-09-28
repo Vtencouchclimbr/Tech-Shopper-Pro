@@ -18,6 +18,7 @@ const Carousel = () => {
           throw new Error('Failed to fetch products');
         }
         const data = await response.json();
+        console.log(`My data: ${data}`);  // Debug: log the fetched data to the console
         setProducts(data);
         setLoading(false);
       } catch (error: unknown) {
