@@ -48,18 +48,16 @@ function Login() {
   };
 
   return (
-    <div>
-      <div className="hiddenContainer d-none d-lg-block d-md-block ms-5">
-        <p style={{ fontSize: '50px' }}>Welcome to Tech Shopper Pro!</p>
+    <div className="container-fluid vh-100 d-flex justify-content-center align-items-center">
+      <div className="hiddenContainer d-none d-lg-block ms-5">
+        <h1 className="display-4">Welcome to Tech Shopper Pro!</h1>
       </div>
-      <div className="d-flex container-fluid formContainer">
+      <div className="formContainer col-12 col-md-8 col-lg-6">
         <form className="row g-3" onSubmit={handleFormSubmit}>
-          <p className="offerText">
-            Sign-in
-          </p>
+          <p className="offerText text-center">Sign-in</p>
 
           {/* User Name */}
-          <div className="col-12 col-md-6">
+          <div className="col-12">
             <input
               value={formInfo.username}
               name="username"
@@ -71,24 +69,24 @@ function Login() {
           </div>
 
           {/* Password */}
-          <div className="col-12 col-md-6">
+          <div className="col-12 mt-3">
             <input
               value={formInfo.password}
-              name="password" // Changed from lastName to password
+              name="password"
               onChange={handleInput}
               className="form-control shadow"
-              type="password" // Changed type to password for security
+              type="password"
               placeholder="Password"
             />
           </div>
 
           {/* Submit Button */}
-          <div className="col-12 text-center">
+          <div className="col-12 text-center mt-4">
             <button className="btn btn-primary shadow" type="submit">
               Submit
             </button>
           </div>
-          <Link to="/register" className="btn btn-link">
+          <Link to="/register" className="btn btn-link mt-3">
             Don't have an account? Register here
           </Link>
         </form>
