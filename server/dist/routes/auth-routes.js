@@ -9,10 +9,10 @@ export const register = async (req, res) => {
     console.log('username', username, 'email', email, 'password', password);
     try {
         // Check if the user already exists based on email
-        // const existingUser = await User.findOne({ where: { email } });
-        // if (existingUser) {
-        //   return res.status(400).json({ message: 'User already exists' });
-        // }
+        const existingUser = await User.findOne({ where: { email } });
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
         // Create a new user (password hashing is handled in the User model)
         const newUser = await User.create({
             username,

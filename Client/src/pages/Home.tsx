@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Login() {
   const [formInfo, setFormInfo] = useState({
-    userName: "",
+    username: "",
     password: ""
   });
 
@@ -37,7 +37,7 @@ function Login() {
 
       // Reset form after submission
       setFormInfo({
-        userName: "",
+        username: "",
         password: "",
       });
 
@@ -61,8 +61,8 @@ function Login() {
           {/* User Name */}
           <div className="col-12 col-md-6">
             <input
-              value={formInfo.userName}
-              name="userName"
+              value={formInfo.username}
+              name="username"
               onChange={handleInput}
               className="form-control shadow"
               type="text"
