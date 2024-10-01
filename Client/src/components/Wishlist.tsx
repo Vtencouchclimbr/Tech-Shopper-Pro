@@ -1,7 +1,7 @@
 import React from 'react';
 import { useWishlist } from './wishlistState';
-import '../utils/offCanvas.css';
 import { WishlistItem } from './wishlistState';
+import '../utils/offCanvas.css';
 
 const Wishlist: React.FC = () => {
   const { state, dispatch } = useWishlist();

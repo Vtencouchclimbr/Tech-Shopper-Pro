@@ -1,11 +1,14 @@
 /* src/components/OffCanvas.css */
 .off-canvas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: fixed;
     top: 0;
     right: -100%;  /* Completely off-screen by default */
     width: 100%;  /* Covers full width or adjust as needed (e.g., 30% for partial) */
     height: 100%;
-    background-color: white;
+    background-color: #f8f5e6;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s ease;
     z-index: 1000;  /* Make sure it appears on top */
@@ -34,3 +37,18 @@
     margin-bottom: 1rem;  /* Add some space below the image */
   }
   
+  .wishul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .wishbtn {
+    background-color: #eceef0;
+    border: 1px solid #ced4da;
+    color: #495057;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
