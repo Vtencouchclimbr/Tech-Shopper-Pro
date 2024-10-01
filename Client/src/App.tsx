@@ -33,13 +33,13 @@ const App: React.FC = () => {
       <div className={`off-canvas ${showWishlist ? 'show' : ''}`}>  {/* slides in from the right */}
         <div className="off-canvas-header">
           <h2>Your Wishlist</h2>
-          <button onClick={toggleWishlist} className="wishlist-close-btn">Close</button>
+          <button onClick={toggleWishlist} className="wishlist-close-btn wishbtn">Close</button>
         </div>
         <div className="off-canvas-body">
           {wishlistState.items.length === 0 ? (
             <p>Your wishlist is empty.</p>
           ) : (
-            <ul>
+            <ul className="wishul">
               {wishlistState.items.map((item) => (
                 <li key={item.id}>
                   <span>{item.name}</span>
