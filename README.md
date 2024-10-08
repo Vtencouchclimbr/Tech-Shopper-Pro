@@ -1,17 +1,20 @@
 # Tech Shopper Pro E-Commerce Application
 ## Table of Contents
 1. [Project Overview](#project-overview)
-2. [Features](#features)
-3. [Technologies Used](#technologies-used)
-4. [Setup Instructions](#setup-instructions)
-5. [API Endpoints](#api-endpoints)
-6. [Authentication](#authentication)
-7. [Wishlist and Cart Functionality](#wishlist-and-cart-functionality)
-8. [Troubleshooting](#troubleshooting)
-9. [Future Improvements](#future-improvements)
-10. [Contributors](#contributors)
+2. [Video](#video)
+3. [Features](#features)
+4. [Technologies Used](#technologies-used)
+5. [Setup Instructions](#setup-instructions)
+6. [API Endpoints](#api-endpoints)
+7. [Authentication](#authentication)
+8. [Wishlist and Cart Functionality](#wishlist-and-cart-functionality)
+9. [Troubleshooting](#troubleshooting)
+10. [Future Improvements](#future-improvements)
+11. [Contributors](#contributors)
 ## Project Overview
 **Tech Shopper Pro** is a full-stack e-commerce application that allows users to browse products, add items to a shopping cart, and proceed to checkout. It also includes a wishlist feature accessible through an off-canvas layout. Users can register and log in using JWT-based authentication, ensuring secure sessions and smooth interactions.
+## Video
+- [Walkthrough Video](https://drive.google.com/file/d/1-UolWxkWGvNjYc3SqY6Z9Sk2oxXW9aT7/view?usp=sharing)
 ## Features
 - **Product Listing**: View detailed product information fetched from an external API.
 - **Cart Functionality**: Add items to the cart, remove them, and proceed to checkout.
